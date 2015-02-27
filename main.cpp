@@ -1,3 +1,7 @@
+/*
+	Main.cpp
+*/
+
 #include "sh_mainwindow.h"
 #include <QtWidgets/QApplication>
 
