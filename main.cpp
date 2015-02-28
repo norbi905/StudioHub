@@ -1,10 +1,15 @@
+/*
+	Main.cpp
+*/
+
 #include "sh_mainwindow.h"
 #include <QtWidgets/QApplication>
 
 int main(int argc, char *argv[])
 {
-	QApplication a(argc, argv);
-	SH_MainWindow w;
-	w.show();
-	return a.exec();
+	QApplication StudioHub_application(argc, argv);
+	SH_MainWindow *studioHub_MainWindow = new SH_MainWindow();
+
+	studioHub_MainWindow->show();
+	return StudioHub_application.exec();
 }

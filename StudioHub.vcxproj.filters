@@ -50,6 +50,24 @@
     <ClCompile Include="GeneratedFiles\qrc_sh_mainwindow.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
+    <ClCompile Include="SH_MainToolBar.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_SH_MainToolBar.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_SH_MainToolBar.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="SH_LogInDialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_SH_LogInDialog.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_SH_LogInDialog.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="sh_mainwindow.h">
@@ -61,10 +79,17 @@
     <CustomBuild Include="sh_mainwindow.qrc">
       <Filter>Resource Files</Filter>
     </CustomBuild>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="GeneratedFiles\ui_sh_mainwindow.h">
+    <CustomBuild Include="SH_MainToolBar.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="darkorange.stylesheet">
+      <Filter>Resource Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="GeneratedFiles\ui_sh_mainwindow.h">
       <Filter>Generated Files</Filter>
-    </ClInclude>
+    </CustomBuild>
+    <CustomBuild Include="SH_LogInDialog.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
   </ItemGroup>
 </Project>
