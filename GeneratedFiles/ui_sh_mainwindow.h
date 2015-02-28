@@ -15,9 +15,7 @@
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QMainWindow>
-#include <QtWidgets/QMenuBar>
 #include <QtWidgets/QStatusBar>
-#include <QtWidgets/QToolBar>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -25,8 +23,6 @@ QT_BEGIN_NAMESPACE
 class Ui_SH_MainWindowClass
 {
 public:
-    QMenuBar *menuBar;
-    QToolBar *mainToolBar;
     QWidget *centralWidget;
     QStatusBar *statusBar;
 
@@ -34,13 +30,7 @@ public:
     {
         if (SH_MainWindowClass->objectName().isEmpty())
             SH_MainWindowClass->setObjectName(QStringLiteral("SH_MainWindowClass"));
-        SH_MainWindowClass->resize(600, 400);
-        menuBar = new QMenuBar(SH_MainWindowClass);
-        menuBar->setObjectName(QStringLiteral("menuBar"));
-        SH_MainWindowClass->setMenuBar(menuBar);
-        mainToolBar = new QToolBar(SH_MainWindowClass);
-        mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
-        SH_MainWindowClass->addToolBar(mainToolBar);
+        SH_MainWindowClass->resize(1021, 752);
         centralWidget = new QWidget(SH_MainWindowClass);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         SH_MainWindowClass->setCentralWidget(centralWidget);
@@ -56,6 +46,9 @@ public:
     void retranslateUi(QMainWindow *SH_MainWindowClass)
     {
         SH_MainWindowClass->setWindowTitle(QApplication::translate("SH_MainWindowClass", "SH_MainWindow", 0));
+#ifndef QT_NO_TOOLTIP
+        SH_MainWindowClass->setToolTip(QString());
+#endif // QT_NO_TOOLTIP
     } // retranslateUi
 
 };

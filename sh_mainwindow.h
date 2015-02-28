@@ -7,7 +7,14 @@
 
 #include <QtWidgets/QMainWindow>
 #include <QMouseEvent>
+#include <qmenu.h>
+#include <qtoolbar.h>
 #include "ui_sh_mainwindow.h"
+
+#include "SH_MainToolBar.h"
+
+// forward declare classes
+class SH_MainToolBar;
 
 class SH_MainWindow : public QMainWindow
 {
@@ -17,6 +24,9 @@ public:
 	// constructor/destructor
 	SH_MainWindow(QWidget *parent = 0);
 	~SH_MainWindow();
+
+	// main tool bar 
+	SH_MainToolBar	*mainToolBar;
 
 private:
 	Ui::SH_MainWindowClass ui;
