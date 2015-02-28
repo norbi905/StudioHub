@@ -1,4 +1,5 @@
 <RCC>
-    <qresource prefix="SH_MainWindow">
-    </qresource>
+  <qresource prefix="SH_MainWindow">
+    <file>StudioHubIcons/DefaultProfilePic.png</file>
+  </qresource>
 </RCC>

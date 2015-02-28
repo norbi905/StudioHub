@@ -16,18 +16,17 @@ SH_MainWindow::SH_MainWindow(QWidget *parent)
 	*/
 	setWindowFlags(Qt::FramelessWindowHint);
 	setMinimumSize(1280, 1024);
-
+	
 	/* Using default ::DefaultContextMenu for now
 	This way, contextMenuEvent() handler is called instead of ours...might change this later
 	setContextMenuPolicy(Qt::CustomContextMenu);
 	*/
-	QStyleOptionSizeGrip *sizeGripStyle;
-	sizeGripStyle = new QStyleOptionSizeGrip();
 
 	createActions();
 	createMenus();
-
-	statusBar()->showMessage("Constructor finished!");
+	
+	mainToolBar = new SH_MainToolBar(parent);
+	addToolBar(mainToolBar);
 
 	ui.setupUi(this);
 }
@@ -37,7 +36,7 @@ Destructor
 */
 SH_MainWindow::~SH_MainWindow()
 {
-
+	delete mainToolBar;
 }
 
 /*
@@ -76,6 +75,10 @@ void SH_MainWindow::createMenus()
 
 }
 
+/*
+contextMenuEvent
+This gets called when a user right clicks anywhere within the application space and a context menu pops up
+*/
 void SH_MainWindow::contextMenuEvent(QContextMenuEvent *event)
 {
 	QMenu	contextMenu(this);
@@ -83,6 +86,10 @@ void SH_MainWindow::contextMenuEvent(QContextMenuEvent *event)
 	contextMenu.exec(event->globalPos());
 }
 
+/*
+quitApplication
+This gets called when a user right clicks and selects quit from the context menu
+*/
 void SH_MainWindow::quitApplication()
 {
 	QApplication::quit();
