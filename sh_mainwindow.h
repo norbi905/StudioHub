@@ -14,23 +14,30 @@ class SH_MainWindow : public QMainWindow
 	Q_OBJECT
 
 public:
-		SH_MainWindow(QWidget *parent = 0);
-		~SH_MainWindow();
-
-		// right click context menu
-		void showContextMenu(const QPoint& pos);
-		void quitApplication();
+	// constructor/destructor
+	SH_MainWindow(QWidget *parent = 0);
+	~SH_MainWindow();
 
 private:
-		Ui::SH_MainWindowClass ui;
+	Ui::SH_MainWindowClass ui;
 
+	QAction	*contextQuitAction;
+	
+	void	createActions();
+	void	createMenus();
+
+	// Mouse key press/movement
+	void	mousePressEvent(QMouseEvent *event);
+	void	mouseMoveEvent(QMouseEvent *event);
+	int		mouseClick_X_Coord;
+	int		mouseClick_Y_Coord;
+	
 protected:
-		// Mouse movement
-		void mousePressEvent(QMouseEvent *event);
-		void mouseMoveEvent(QMouseEvent *event);
+	// right click context menu
+	void	contextMenuEvent(QContextMenuEvent *event) Q_DECL_OVERRIDE;
 
-		float mouseClick_X_Coord;
-		float mouseClick_Y_Coord;
+	private slots:
+		void quitApplication();
 };
 
 #endif // SH_MAINWINDOW_H

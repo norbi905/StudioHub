@@ -10,13 +10,24 @@ Constructor
 SH_MainWindow::SH_MainWindow(QWidget *parent)
 	: QMainWindow(parent)
 {
-	// dont want the main window frame to show
+	/* Setup main window
+	::FramelessWindowHint - We dont want any window frames
+
+	*/
 	setWindowFlags(Qt::FramelessWindowHint);
+	setMinimumSize(1280, 1024);
 
-	// we want to be able to right click anywhere within the main window and display a dropdown populated with options/selections
+	/* Using default ::DefaultContextMenu for now
+	This way, contextMenuEvent() handler is called instead of ours...might change this later
 	setContextMenuPolicy(Qt::CustomContextMenu);
-	connect(this, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(showContextMenu(const QPoint&)));
+	*/
+	QStyleOptionSizeGrip *sizeGripStyle;
+	sizeGripStyle = new QStyleOptionSizeGrip();
 
+	createActions();
+	createMenus();
+
+	statusBar()->showMessage("Constructor finished!");
 
 	ui.setupUi(this);
 }
@@ -36,15 +47,8 @@ void SH_MainWindow::mousePressEvent(QMouseEvent *event)
 {
 	QMainWindow::mousePressEvent(event);
 
-	QPoint	mouseCoord(event->x(), event->y());
-
 	mouseClick_X_Coord = event->x();
 	mouseClick_Y_Coord = event->y();
-
-	if (event->button() == Qt::RightButton)
-	{
-		showContextMenu(mouseCoord);
-	}
 }
 
 /*
@@ -57,21 +61,29 @@ void SH_MainWindow::mouseMoveEvent(QMouseEvent *event)
 	move(event->globalX() - mouseClick_X_Coord, event->globalY() - mouseClick_Y_Coord);
 }
 
-/*
-ShowContextMenu
-*/
-void SH_MainWindow::showContextMenu(const QPoint &pos)
-{
-	QMenu contextMenu(tr("ContextMenu"), this);
-	QAction action1("Quit", this);
-	QObject::connect(&action1, SIGNAL(triggered()), this, SLOT(quitApplication()));
-	contextMenu.addAction(&action1);
 
-	contextMenu.exec(mapToGlobal(pos));
+void SH_MainWindow::createActions()
+{
+	contextQuitAction = new QAction(tr("&Quit"), this);
+	contextQuitAction->setShortcut(QKeySequence::Quit);
+	contextQuitAction->setStatusTip("Quit application");
+	connect(contextQuitAction, SIGNAL(triggered()), this, SLOT(quitApplication()));
+
+}
+
+void SH_MainWindow::createMenus()
+{
+
+}
+
+void SH_MainWindow::contextMenuEvent(QContextMenuEvent *event)
+{
+	QMenu	contextMenu(this);
+	contextMenu.addAction(contextQuitAction);
+	contextMenu.exec(event->globalPos());
 }
 
 void SH_MainWindow::quitApplication()
 {
 	QApplication::quit();
-	exit(1);
 }
