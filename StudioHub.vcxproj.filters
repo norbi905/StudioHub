@@ -67,4 +67,9 @@
       <Filter>Generated Files</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="darkorange.stylesheet">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
 </Project>
