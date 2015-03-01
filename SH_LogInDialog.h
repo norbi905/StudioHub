@@ -8,6 +8,9 @@ SH_LogInDialog
 #include "qdialog.h"
 #include "qlabel.h"
 #include "qpushbutton.h"
+#include "qaction.h"
+#include "qlineedit.h"
+#include "qgraphicseffect.h"
 
 #include "sh_mainwindow.h"
 
@@ -16,7 +19,7 @@ class SH_LogInDialog : public QDialog
 	Q_OBJECT
 
 public:
-	SH_LogInDialog(QWidget *parent);
+	SH_LogInDialog(QWidget *parent, Qt::WindowFlags f=0);
 	~SH_LogInDialog();
 
 private:
@@ -27,12 +30,29 @@ private:
 	int		mouseClick_Y_Coord;
 
 	void		createButtons();
+	void		createActions();
+	void		createSignals();
+	void		createEditBox();
+	void		createLabels();
 
-	QLabel		*logInTitle;
+	QLabel		*usernameLabel;
+	QLabel		*passwordLabel;
+
 	QPushButton	*logInButton;
 	QPushButton	*cancelButton;
 
+	QAction		*logInAction;
+	QAction		*cancelAction;
+
+	QLineEdit	*usernameEditBox;
+	QLineEdit	*passwordEditBox;
+
+private slots:
+	void		logIn();
+	void		cancel();
+
 protected:
+
 };
 
 #endif // SH_LogInDialog
