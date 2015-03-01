@@ -5,6 +5,7 @@
 #ifndef SH_MAINWINDOW_H
 #define SH_MAINWINDOW_H
 
+#include <qsql.h>
 #include <QtWidgets/QMainWindow>
 #include <QMouseEvent>
 #include <qmenu.h>
@@ -12,9 +13,13 @@
 #include "ui_sh_mainwindow.h"
 
 #include "SH_MainToolBar.h"
+#include "SH_LogInDialog.h"
+#include "SH_User.h"
 
 // forward declare classes
 class SH_MainToolBar;
+class SH_LogInDialog;
+class SH_User;
 
 class SH_MainWindow : public QMainWindow
 {
@@ -25,16 +30,18 @@ public:
 	SH_MainWindow(QWidget *parent = 0);
 	~SH_MainWindow();
 
-	// main tool bar 
-	SH_MainToolBar	*mainToolBar;
-
 private:
 	Ui::SH_MainWindowClass ui;
+ 
+	SH_MainToolBar	*mainToolBar;
+	SH_LogInDialog	*logInDialogWindow;
+	SH_User			*mainUser;
 
 	QAction	*contextQuitAction;
 	
 	void	createActions();
 	void	createMenus();
+	void	createLogIn(QWidget *parent);
 
 	// Mouse key press/movement
 	void	mousePressEvent(QMouseEvent *event);

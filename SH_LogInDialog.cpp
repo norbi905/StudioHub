@@ -12,7 +12,7 @@ SH_LogInDialog::SH_LogInDialog(QWidget *parent, Qt::WindowFlags)
 {
 	// Set-up window
 	//this->setWindowFlags(Qt::FramelessWindowHint);
-	this->setWindowFlags(Qt::SubWindow);
+	//this->setWindowFlags(Qt::SubWindow);
 	this->setFixedSize(400, 100);
 	//this->setParent(parent);
 
@@ -87,24 +87,8 @@ createSignals
 */
 void SH_LogInDialog::createSignals()
 {
-	connect(logInButton, SIGNAL(clicked()), this, SLOT(logIn()));
-	connect(cancelButton, SIGNAL(clicked()), this, SLOT(cancel()));
-}
-
-/*
-logIn
-*/
-void SH_LogInDialog::logIn()
-{
-	QApplication::quit();
-}
-
-/*
-cancel
-*/
-void SH_LogInDialog::cancel()
-{
-	this->setVisible(false);
+	connect(logInButton, SIGNAL(clicked()), this, SLOT(accept()));
+	connect(cancelButton, SIGNAL(clicked()), this, SLOT(reject()));
 }
 
 /*
@@ -129,4 +113,14 @@ void SH_LogInDialog::createLabels()
 
 	usernameLabel->setGeometry(20, 8, 80, 25);
 	passwordLabel->setGeometry(20, 38, 80, 25);
+}
+
+QString SH_LogInDialog::getUsername()
+{
+	return usernameEditBox->text();
+}
+
+QString SH_LogInDialog::getPassword()
+{
+	return passwordEditBox->text();
 }

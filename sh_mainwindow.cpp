@@ -22,13 +22,13 @@ SH_MainWindow::SH_MainWindow(QWidget *parent)
 	setContextMenuPolicy(Qt::CustomContextMenu);
 	*/
 
-	createActions();
-	createMenus();
-	
-	mainToolBar = new SH_MainToolBar(parent);
-	addToolBar(mainToolBar);
-
 	ui.setupUi(this);
+	this->show();
+
+	createLogIn(parent);
+	
+	//mainToolBar = new SH_MainToolBar(parent);
+	//addToolBar(mainToolBar);
 }
 
 /*
@@ -36,7 +36,9 @@ Destructor
 */
 SH_MainWindow::~SH_MainWindow()
 {
+	delete mainUser;
 	delete mainToolBar;
+	delete logInDialogWindow;
 }
 
 /*
@@ -93,4 +95,31 @@ This gets called when a user right clicks and selects quit from the context menu
 void SH_MainWindow::quitApplication()
 {
 	QApplication::quit();
+}
+
+void SH_MainWindow::createLogIn(QWidget *parent)
+{
+	logInDialogWindow = new SH_LogInDialog(parent);
+	int result = logInDialogWindow->exec();
+	if (result == QDialog::Accepted)
+	{
+		//do something
+		QString	username = logInDialogWindow->getUsername();
+		QString password = logInDialogWindow->getPassword();
+		//this->statusBar()->showMessage("Credentials: " + username +" " + password);
+		
+		mainUser = new SH_User(username, password, "S");
+		bool connected = mainUser->isLoggedIn();
+		if (connected)
+			this->statusBar()->showMessage("Connected as:" + username);
+		else
+			this->statusBar()->showMessage(mainUser->getDBError());
+
+	}
+	if (result == QDialog::Rejected)
+	{
+		exit(0);
+	}
+	createActions();
+	createMenus();
 }
