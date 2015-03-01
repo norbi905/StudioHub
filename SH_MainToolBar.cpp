@@ -31,7 +31,7 @@ Destructor
 */
 SH_MainToolBar::~SH_MainToolBar()
 {
-
+	delete logInDialog;
 }
 
 /*
@@ -78,7 +78,8 @@ displayLogInDialog
 */
 void SH_MainToolBar::displayLogInDialog()
 {
-	logInDialog->setVisible(true);
+	logInDialog->setModal(true);
+	logInDialog->exec();
 }
 
 /*
