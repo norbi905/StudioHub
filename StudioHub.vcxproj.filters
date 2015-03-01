@@ -68,6 +68,9 @@
     <ClCompile Include="GeneratedFiles\Release\moc_SH_LogInDialog.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="SH_User.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="sh_mainwindow.h">
@@ -89,6 +92,9 @@
       <Filter>Generated Files</Filter>
     </CustomBuild>
     <CustomBuild Include="SH_LogInDialog.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="SH_User.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
   </ItemGroup>

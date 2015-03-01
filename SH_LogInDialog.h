@@ -10,7 +10,6 @@ SH_LogInDialog
 #include "qpushbutton.h"
 #include "qaction.h"
 #include "qlineedit.h"
-#include "qgraphicseffect.h"
 
 #include "sh_mainwindow.h"
 
@@ -21,6 +20,9 @@ class SH_LogInDialog : public QDialog
 public:
 	SH_LogInDialog(QWidget *parent, Qt::WindowFlags f=0);
 	~SH_LogInDialog();
+
+	QString	getUsername();
+	QString getPassword();
 
 private:
 	// Mouse key press/movement
@@ -46,10 +48,6 @@ private:
 
 	QLineEdit	*usernameEditBox;
 	QLineEdit	*passwordEditBox;
-
-private slots:
-	void		logIn();
-	void		cancel();
 
 protected:
 
