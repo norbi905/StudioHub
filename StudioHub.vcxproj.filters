@@ -35,32 +35,8 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="sh_mainwindow.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_sh_mainwindow.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_sh_mainwindow.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
     <ClCompile Include="GeneratedFiles\qrc_sh_mainwindow.cpp">
       <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SH_MainToolBar.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_SH_MainToolBar.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_SH_MainToolBar.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="SH_LogInDialog.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_SH_LogInDialog.cpp">
       <Filter>Generated Files\Debug</Filter>
@@ -68,22 +44,40 @@
     <ClCompile Include="GeneratedFiles\Release\moc_SH_LogInDialog.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
-    <ClCompile Include="SH_User.cpp">
+    <ClCompile Include="GeneratedFiles\Debug\moc_SH_MainToolBar.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_SH_MainToolBar.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_sh_mainwindow.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_sh_mainwindow.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SH_LogInDialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SH_MainToolBar.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sh_mainwindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SH_User.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="sh_mainwindow.h">
-      <Filter>Header Files</Filter>
-    </CustomBuild>
     <CustomBuild Include="sh_mainwindow.ui">
       <Filter>Form Files</Filter>
     </CustomBuild>
     <CustomBuild Include="sh_mainwindow.qrc">
       <Filter>Resource Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="SH_MainToolBar.h">
-      <Filter>Header Files</Filter>
     </CustomBuild>
     <CustomBuild Include="darkorange.stylesheet">
       <Filter>Resource Files</Filter>
@@ -91,11 +85,19 @@
     <CustomBuild Include="GeneratedFiles\ui_sh_mainwindow.h">
       <Filter>Generated Files</Filter>
     </CustomBuild>
-    <CustomBuild Include="SH_LogInDialog.h">
+    <CustomBuild Include="include\SH_LogInDialog.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
-    <CustomBuild Include="SH_User.h">
+    <CustomBuild Include="include\SH_MainToolBar.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
+    <CustomBuild Include="include\sh_mainwindow.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\SH_User.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
