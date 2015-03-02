@@ -2,7 +2,7 @@
 SH_User.cpp
 */
 
-#include "SH_User.h"
+#include "include\SH_User.h"
 #include "qdebug.h"
 
 /*
@@ -56,12 +56,6 @@ bool SH_User::connectToDatabase(QString username, QString password)
 		QSqlError error;
 		error = db.lastError();
 		dbError.append(error.text());
-		bool driver = QSqlDatabase::isDriverAvailable("QMYSQL");
-		if (driver)
-			dbError.append(" MYSQL DRIVER AVAILABLE");
-		else if (!driver)
-			dbError.append(" MYSQL DRIVER NOT AVAILABLE");
-		
 		return false;
 	}
 	

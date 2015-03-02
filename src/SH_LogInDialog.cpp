@@ -2,7 +2,7 @@
 SH_LoginDialog.cpp
 */
 
-#include "SH_LogInDialog.h"
+#include "include\SH_LogInDialog.h"
 
 /*
 Constructor

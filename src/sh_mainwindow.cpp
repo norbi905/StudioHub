@@ -2,7 +2,7 @@
 	SH_MainWindow.cpp
 */
 
-#include "sh_mainwindow.h"
+#include "include\sh_mainwindow.h"
 
 /*
 Constructor
