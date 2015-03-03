@@ -7,7 +7,7 @@ SH_MainToolBar.cpp
 /*
 Constructor
 */
-SH_MainToolBar::SH_MainToolBar(QWidget *parent)
+SH_MainToolBar::SH_MainToolBar(QWidget *parent, SH_MainWindow *mainWindow)
 	:QToolBar(parent)
 {
 	// Set-up toolbar properties
@@ -22,8 +22,8 @@ SH_MainToolBar::SH_MainToolBar(QWidget *parent)
 	createProfileButton();
 	createSignals();
 
-	// create loginDialog
-	logInDialog = new SH_LogInDialog(parent);
+	mainWindowReference = mainWindow;
+	parentReference = parent;
 }
 
 /*
@@ -31,7 +31,11 @@ Destructor
 */
 SH_MainToolBar::~SH_MainToolBar()
 {
-	delete logInDialog;
+	////delete mainWindowReference;
+	//delete logOffAction;
+	//delete quitAction;
+	//delete userProfileButton;
+	////delete parentReference;
 }
 
 /*
@@ -43,7 +47,6 @@ void SH_MainToolBar::createProfileButton()
 	userProfileButton = new QToolButton(this);
 	
 	userProfileButton->setIcon(QIcon("../StudioHubIcons/DefaultProfilePic.png"));
-	userProfileButton->addAction(logInAction);
 	userProfileButton->addAction(logOffAction);
 	userProfileButton->addAction(quitAction);
 	userProfileButton->setPopupMode(QToolButton::InstantPopup);
@@ -57,7 +60,6 @@ Creates menus for when the user press and holds the profile button.
 */
 void SH_MainToolBar::createActions()
 {
-	logInAction = new QAction("LogIn", this);
 	logOffAction = new QAction("Log Off", this);
 	quitAction = new QAction("Quit", this);
 }
@@ -68,18 +70,8 @@ Attach menu items to functions
 */
 void SH_MainToolBar::createSignals()
 {
-	connect(logInAction, SIGNAL(triggered()), this, SLOT(displayLogInDialog()));
 	connect(logOffAction, SIGNAL(triggered()), this, SLOT(logOff()));
 	connect(quitAction, SIGNAL(triggered()), this, SLOT(quitApplication()));
-}
-
-/*
-displayLogInDialog
-*/
-void SH_MainToolBar::displayLogInDialog()
-{
-	logInDialog->setModal(true);
-	logInDialog->exec();
 }
 
 /*
@@ -87,7 +79,7 @@ logOff
 */
 void SH_MainToolBar::logOff()
 {
-
+	mainWindowReference->userRequestedLogOff(parentReference);
 }
 
 /*

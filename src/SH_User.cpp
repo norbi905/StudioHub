@@ -2,15 +2,16 @@
 SH_User.cpp
 */
 
-#include "include\SH_User.h"
 #include "qdebug.h"
+
+#include "include\SH_User.h"
 
 /*
 Constructor
 */
 SH_User::SH_User(QString username, QString password, QString access)
 {
-	loggedIn = connectToDatabase(username, password);
+	//loggedIn = connectToDatabase(username, password);
 }
 
 /*
@@ -37,32 +38,4 @@ sets loggedIn bool
 void SH_User::setLoggedIn(bool state)
 {
 	loggedIn = state;
-}
-
-/*
-connectToDatabase
-*/
-bool SH_User::connectToDatabase(QString username, QString password)
-{
-	//QCoreApplication::addLibraryPath(QCoreApplication::applicationDirPath());
-    db = QSqlDatabase::addDatabase("QMYSQL");
-	db.setHostName("mysqlserver");
-	db.setDatabaseName("studiohub");
-	db.setUserName("root");
-	db.setPassword("root");
-
-	if (!db.open())
-	{
-		QSqlError error;
-		error = db.lastError();
-		dbError.append(error.text());
-		return false;
-	}
-	
-	return true;
-}
-
-QString SH_User::getDBError()
-{
-	return dbError;
 }
