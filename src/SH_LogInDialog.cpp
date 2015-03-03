@@ -101,6 +101,7 @@ void SH_LogInDialog::createEditBox()
 
 	usernameEditBox->setGeometry(120, 10, 170, 22);
 	passwordEditBox->setGeometry(120, 40, 170, 22);
+	passwordEditBox->setEchoMode(QLineEdit::Password);
 }
 
 /*

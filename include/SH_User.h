@@ -18,15 +18,11 @@ public:
 	~SH_User();
 
 	bool	isLoggedIn();
-	QString	dbError;
-	QString	getDBError();
+	void	setLoggedIn(bool state);
 
 private:
-	QSqlDatabase	db;
-
 	bool	loggedIn;
-	void	setLoggedIn(bool state);
-	bool	connectToDatabase(QString username, QString password);
+	
 
 protected:
 };

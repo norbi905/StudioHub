@@ -71,6 +71,9 @@
     <ClCompile Include="src\SH_User.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\SH_MySqlConnector.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="sh_mainwindow.ui">
@@ -97,6 +100,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\SH_User.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SH_MySqlConnector.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

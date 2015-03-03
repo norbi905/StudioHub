@@ -176,6 +176,7 @@
     <ClCompile Include="src\SH_LogInDialog.cpp" />
     <ClCompile Include="src\SH_MainToolBar.cpp" />
     <ClCompile Include="src\sh_mainwindow.cpp" />
+    <ClCompile Include="src\SH_MySqlConnector.cpp" />
     <ClCompile Include="src\SH_User.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -343,6 +344,7 @@
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\SH_MySqlConnector.h" />
     <ClInclude Include="include\SH_User.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

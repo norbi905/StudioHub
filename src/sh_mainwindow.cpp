@@ -22,10 +22,12 @@ SH_MainWindow::SH_MainWindow(QWidget *parent)
 	setContextMenuPolicy(Qt::CustomContextMenu);
 	*/
 
+	mySqlConnector = new SH_MySqlConnector();
+
 	ui.setupUi(this);
 	this->show();
 
-	createLogIn(parent);
+	initiateLogIn(parent);
 	
 	//mainToolBar = new SH_MainToolBar(parent);
 	//addToolBar(mainToolBar);
@@ -38,7 +40,8 @@ SH_MainWindow::~SH_MainWindow()
 {
 	delete mainUser;
 	delete mainToolBar;
-	delete logInDialogWindow;
+	delete mainUser;
+	delete mySqlConnector;
 }
 
 /*
@@ -65,16 +68,16 @@ void SH_MainWindow::mouseMoveEvent(QMouseEvent *event)
 
 void SH_MainWindow::createActions()
 {
-	contextQuitAction = new QAction(tr("&Quit"), this);
+	/*contextQuitAction = new QAction(tr("&Quit"), this);
 	contextQuitAction->setShortcut(QKeySequence::Quit);
 	contextQuitAction->setStatusTip("Quit application");
-	connect(contextQuitAction, SIGNAL(triggered()), this, SLOT(quitApplication()));
-
+	connect(contextQuitAction, SIGNAL(triggered()), this, SLOT(quitApplication()));*/
 }
 
-void SH_MainWindow::createMenus()
+void SH_MainWindow::createMenus(QWidget *parent	)
 {
-
+	mainToolBar = new SH_MainToolBar(parent, this);
+	addToolBar(mainToolBar);
 }
 
 /*
@@ -97,29 +100,53 @@ void SH_MainWindow::quitApplication()
 	QApplication::quit();
 }
 
-void SH_MainWindow::createLogIn(QWidget *parent)
+void SH_MainWindow::initiateLogIn(QWidget *parent)
 {
 	logInDialogWindow = new SH_LogInDialog(parent);
 	int result = logInDialogWindow->exec();
+
 	if (result == QDialog::Accepted)
 	{
-		//do something
 		QString	username = logInDialogWindow->getUsername();
 		QString password = logInDialogWindow->getPassword();
-		//this->statusBar()->showMessage("Credentials: " + username +" " + password);
 		
-		mainUser = new SH_User(username, password, "S");
-		bool connected = mainUser->isLoggedIn();
+		bool connected = mySqlConnector->connectToDatabase(username, password);
 		if (connected)
-			this->statusBar()->showMessage("Connected as:" + username);
+		{
+			this->statusBar()->showMessage("Connected as: " + username);
+			createActions();
+			createMenus(parent);
+		}
 		else
-			this->statusBar()->showMessage(mainUser->getDBError());
+		{
+			this->statusBar()->showMessage(mySqlConnector->getDBError());
+			initiateLogIn(parent);
+		}
+
+		mainUser = new SH_User(username, password, "S");
+		mainUser->setLoggedIn(true);
 
 	}
+
 	if (result == QDialog::Rejected)
 	{
+		delete logInDialogWindow;
 		exit(0);
-	}
-	createActions();
-	createMenus();
+	}	
+}
+
+/*
+userRequestedLogOff
+*/
+void SH_MainWindow::userRequestedLogOff(QWidget *parent)
+{
+	/*this->removeToolBar(mainToolBar);
+	delete mainToolBar;*/
+	delete mainUser;
+
+	removeToolBar(mainToolBar);
+	delete mainToolBar;
+	delete logInDialogWindow;
+
+	initiateLogIn(parent);
 }

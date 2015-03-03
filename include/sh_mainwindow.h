@@ -15,11 +15,13 @@
 #include "SH_MainToolBar.h"
 #include "SH_LogInDialog.h"
 #include "SH_User.h"
+#include "SH_MySqlConnector.h"
 
 // forward declare classes
 class SH_MainToolBar;
 class SH_LogInDialog;
 class SH_User;
+class SH_MySqlConnector;
 
 class SH_MainWindow : public QMainWindow
 {
@@ -30,31 +32,34 @@ public:
 	SH_MainWindow(QWidget *parent = 0);
 	~SH_MainWindow();
 
+	void				userRequestedLogOff(QWidget	*parent);
+
 private:
 	Ui::SH_MainWindowClass ui;
  
-	SH_MainToolBar	*mainToolBar;
-	SH_LogInDialog	*logInDialogWindow;
-	SH_User			*mainUser;
+	SH_MainToolBar		*mainToolBar;
+	SH_LogInDialog		*logInDialogWindow;
+	SH_User				*mainUser;
+	SH_MySqlConnector	*mySqlConnector;
 
-	QAction	*contextQuitAction;
+	QAction				*contextQuitAction;
 	
-	void	createActions();
-	void	createMenus();
-	void	createLogIn(QWidget *parent);
+	void				createActions();
+	void				createMenus(QWidget *parent);
+	void				initiateLogIn(QWidget *parent);
 
 	// Mouse key press/movement
-	void	mousePressEvent(QMouseEvent *event);
-	void	mouseMoveEvent(QMouseEvent *event);
-	int		mouseClick_X_Coord;
-	int		mouseClick_Y_Coord;
+	void				mousePressEvent(QMouseEvent *event);
+	void				mouseMoveEvent(QMouseEvent *event);
+	int					mouseClick_X_Coord;
+	int					mouseClick_Y_Coord;
 	
 protected:
 	// right click context menu
-	void	contextMenuEvent(QContextMenuEvent *event) Q_DECL_OVERRIDE;
+	void				contextMenuEvent(QContextMenuEvent *event) Q_DECL_OVERRIDE;
 
 	private slots:
-		void quitApplication();
+		void			quitApplication();
 };
 
 #endif // SH_MAINWINDOW_H
