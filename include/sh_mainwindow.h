@@ -32,7 +32,7 @@ public:
 	SH_MainWindow(QWidget *parent = 0);
 	~SH_MainWindow();
 
-	void				userRequestedLogOff(QWidget	*parent);
+	//void				userRequestedLogOff(QWidget	*parent);
 
 private:
 	Ui::SH_MainWindowClass ui;
@@ -44,8 +44,8 @@ private:
 
 	QAction				*contextQuitAction;
 	
-	void				createActions();
-	void				createMenus(QWidget *parent);
+	void				createContextActions();
+	void				displayApplication(QWidget *parent);
 	void				initiateLogIn(QWidget *parent);
 
 	// Mouse key press/movement
@@ -60,6 +60,7 @@ protected:
 
 	private slots:
 		void			quitApplication();
+		void			userRequestedLogOff();
 };
 
 #endif // SH_MAINWINDOW_H

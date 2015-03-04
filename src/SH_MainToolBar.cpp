@@ -7,7 +7,7 @@ SH_MainToolBar.cpp
 /*
 Constructor
 */
-SH_MainToolBar::SH_MainToolBar(QWidget *parent, SH_MainWindow *mainWindow)
+SH_MainToolBar::SH_MainToolBar(QWidget *parent)
 	:QToolBar(parent)
 {
 	// Set-up toolbar properties
@@ -18,12 +18,8 @@ SH_MainToolBar::SH_MainToolBar(QWidget *parent, SH_MainWindow *mainWindow)
 	this->setLayoutDirection(Qt::RightToLeft);
 	this->setIconSize(QSize(64, 64));
 
-	createActions();
-	createProfileButton();
-	createSignals();
-
-	mainWindowReference = mainWindow;
-	parentReference = parent;
+	createActionsAndSignals();
+	createMenu();
 }
 
 /*
@@ -31,62 +27,62 @@ Destructor
 */
 SH_MainToolBar::~SH_MainToolBar()
 {
-	////delete mainWindowReference;
-	//delete logOffAction;
-	//delete quitAction;
-	//delete userProfileButton;
-	////delete parentReference;
+	delete logOffAction;
+	delete quitAction;
+	delete userProfileButton;
+	delete usernameLabel;
 }
 
 /*
-createProfileButton
+createMenu
 Creates the upper right hand side profile button, allows user to log in/off or quit application
 */
-void SH_MainToolBar::createProfileButton()
+void SH_MainToolBar::createMenu()
 {
+	// Profile button
 	userProfileButton = new QToolButton(this);
 	
 	userProfileButton->setIcon(QIcon("../StudioHubIcons/DefaultProfilePic.png"));
 	userProfileButton->addAction(logOffAction);
 	userProfileButton->addAction(quitAction);
 	userProfileButton->setPopupMode(QToolButton::InstantPopup);
-	
+
+	// username Label
+	usernameLabel = new QLabel();
+	usernameLabel->setAlignment(Qt::AlignBottom);
+	usernameLabel->setPalette(QPalette(QPalette::WindowText, Qt::red));
+
 	this->addWidget(userProfileButton);
+	this->addWidget(usernameLabel);
 }
 
 /*
-createActions
+createActionsAndSignals
 Creates menus for when the user press and holds the profile button.
 */
-void SH_MainToolBar::createActions()
+void SH_MainToolBar::createActionsAndSignals()
 {
+	// Actions
 	logOffAction = new QAction("Log Off", this);
 	quitAction = new QAction("Quit", this);
+
+	// Signals
+	connect(logOffAction, SIGNAL(triggered()), this, SLOT(userLogOffRequested()));
+	connect(quitAction, SIGNAL(triggered()), this, SLOT(userQuitRequested()));
 }
 
 /*
-createSignals
-Attach menu items to functions
+userLogOffRequested()
 */
-void SH_MainToolBar::createSignals()
+void SH_MainToolBar::userLogOffRequested()
 {
-	connect(logOffAction, SIGNAL(triggered()), this, SLOT(logOff()));
-	connect(quitAction, SIGNAL(triggered()), this, SLOT(quitApplication()));
+	emit logOffRequested();
 }
 
 /*
-logOff
+quitRequested
 */
-void SH_MainToolBar::logOff()
+void SH_MainToolBar::userQuitRequested()
 {
-	mainWindowReference->userRequestedLogOff(parentReference);
-}
-
-/*
-quitApplication
-Called when user selects quit application from menu
-*/
-void SH_MainToolBar::quitApplication()
-{
-	QApplication::quit();
+	emit quitRequested();
 }
