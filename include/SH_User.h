@@ -10,18 +10,29 @@ SH_User
 
 #include "sh_mainwindow.h"
 
-class SH_User
+class SH_User : public QObject
 {
 
+	Q_OBJECT
+
 public:
+	SH_User();
 	SH_User(QString username, QString password, QString access);
 	~SH_User();
 
 	bool	isLoggedIn();
 	void	setLoggedIn(bool state);
 
+	void	setUsername(QString username);
+	void	setAccess(QString access);
+	QString	getUsername();
+	QString	getAccess();
+
 private:
 	bool	loggedIn;
+
+	QString	userName;
+	QString userAccess;
 	
 
 protected:

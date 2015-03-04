@@ -8,8 +8,8 @@ SH_MainToolBar.h
 #include "qtoolbutton.h"
 #include "sh_mainwindow.h"
 #include "SH_LogInDialog.h"
-#include "sh_mainwindow.h"
 
+// forward declare classes
 class SH_LogInDialog;
 class SH_MainWindow;
 
@@ -18,26 +18,29 @@ class SH_MainToolBar : public QToolBar
 	Q_OBJECT
 
 public:
-	SH_MainToolBar(QWidget *parent = 0, SH_MainWindow *mainWindow = 0);
+	SH_MainToolBar(QWidget *parent = 0);
 	~SH_MainToolBar();
 
 	SH_LogInDialog	*logInDialog;
+	
+	QLabel			*usernameLabel;
 
 private:
-	SH_MainWindow	*mainWindowReference;
-	QWidget			*parentReference;
 	QToolButton		*userProfileButton;
+	
 
 	QAction			*logOffAction;
 	QAction			*quitAction;
 
-	void			createProfileButton();
-	void			createActions();
-	void			createSignals();
+	void			createActionsAndSignals();
+	void			createMenu();
 
 private slots:
-	void			quitApplication();
-	void			logOff();
+	void			userLogOffRequested();
+	void			userQuitRequested();
+signals :
+	void			logOffRequested();
+	void			quitRequested();
 
 protected:
 
