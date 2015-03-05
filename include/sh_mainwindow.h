@@ -13,17 +13,25 @@
 #include "ui_sh_mainwindow.h"
 
 #include "SH_MainToolBar.h"
-#include "SH_SecondaryToolBar.h"
+#include "SH_MainViewToolBar.h"
+#include "SH_ProjectViewToolBar.h"
+#include "SH_UsersViewToolBar.h"
+#include "SH_CalendarViewToolBar.h"
 #include "SH_LogInDialog.h"
 #include "SH_User.h"
 #include "SH_MySqlConnector.h"
+#include "SH_ProjectListView.h"
 
 // forward declare classes
 class SH_MainToolBar;
-class SH_SecondaryToolBar;
+class SH_MainViewToolBar;
+class SH_ProjectViewToolBar;
+class SH_UsersViewToolBar;
+class SH_CalendarViewToolBar;
 class SH_LogInDialog;
 class SH_User;
 class SH_MySqlConnector;
+class SH_ProjectListView;
 
 class SH_MainWindow : public QMainWindow
 {
@@ -39,8 +47,17 @@ public:
 private:
 	Ui::SH_MainWindowClass ui;
  
-	SH_MainToolBar		*mainToolBar;
-	SH_SecondaryToolBar	*secondaryToolBar;
+	// create main and additional toolbars
+	SH_MainToolBar			*mainToolBar;
+	SH_MainViewToolBar		*mainViewToolBar;
+	SH_ProjectViewToolBar	*projectViewToolBar;
+	SH_UsersViewToolBar		*usersViewToolBar;
+	SH_CalendarViewToolBar	*calendarViewToolBar;
+
+	//create views
+	SH_ProjectListView		*projectListView;
+
+
 	SH_LogInDialog		*logInDialogWindow;
 	SH_User				*mainUser;
 	SH_MySqlConnector	*mySqlConnector;
@@ -64,6 +81,10 @@ protected:
 	private slots:
 		void			quitApplication();
 		void			userRequestedLogOff();
+		void			mainToolBarMainViewPressed();
+		void			mainToolBarProjectViewPressed();
+		void			mainToolBarUsersViewPressed();
+		void			mainToolBarCalendarViewPressed();
 };
 
 #endif // SH_MAINWINDOW_H

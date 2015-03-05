@@ -25,6 +25,9 @@ public:
 	
 	QLabel			*usernameLabel;
 
+	// this is so we can reset when the user logs-off and re-logs
+	void			resetToolBarButtons();
+
 private:
 	QToolButton		*userProfileButton;
 	QWidget			*toolBarSpacer;
