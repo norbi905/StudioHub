@@ -17,16 +17,16 @@ SH_SecondaryToolBar::SH_SecondaryToolBar(SH_MainToolBar *mainToolBar, QWidget *p
 	//setLayoutDirection(Qt::LeftToRight);
 
 	//create all tool bar buttons
-	firstButton = new QToolButton(this);
-	secondButton = new QToolButton(this);
-	thirdButton = new QToolButton(this);
-	fourthButton= new QToolButton(this);
-	fifthButton = new QToolButton(this);
-	sixthButton = new QToolButton(this);
-	seventhButton = new QToolButton(this);
-	eighthButton = new QToolButton(this);
-	ninethButton = new QToolButton(this);
-	tenthButton = new QToolButton(this);
+	firstButton = new QPushButton(this);
+	secondButton = new QPushButton(this);
+	thirdButton = new QPushButton(this);
+	fourthButton= new QPushButton(this);
+	fifthButton = new QPushButton(this);
+	sixthButton = new QPushButton(this);
+	seventhButton = new QPushButton(this);
+	eighthButton = new QPushButton(this);
+	ninethButton = new QPushButton(this);
+	tenthButton = new QPushButton(this);
 
 	firstButton->setText("first");
 	secondButton->setText("second");
@@ -57,6 +57,23 @@ SH_SecondaryToolBar::SH_SecondaryToolBar(SH_MainToolBar *mainToolBar, QWidget *p
 	connect(mainToolBar, SIGNAL(projectViewPressed()), this, SLOT(mainToolBarProjectViewPressed()));
 	connect(mainToolBar, SIGNAL(calendarViewPressed()), this, SLOT(mainToolBarCalendarViewPressed()));
 
+	mainViewButtonList.insert(1, firstButton);
+	mainViewButtonList.insert(2, secondButton);
+	usersViewButtonList.insert(1, thirdButton);
+	usersViewButtonList.insert(2, fourthButton);
+	usersViewButtonList.insert(3, fifthButton);
+	projectViewButtonList.insert(1, sixthButton);
+	calendarViewButtonList.insert(1, seventhButton);
+	calendarViewButtonList.insert(2, eighthButton);
+	calendarViewButtonList.insert(3, ninethButton);
+	calendarViewButtonList.insert(4, tenthButton);
+
+	// set up initial tool bar views / set it to MAINVIEW
+	setVisibleMainView(true);
+	setVisibleUsersView(false);
+	setVisibleProjectView(false);
+	setVisibleCalendarView(false);
+
 }
 
 /*
@@ -75,28 +92,88 @@ void SH_SecondaryToolBar::createActions()
 
 }
 
+/*
+mainToolBarMainViewPressed
+*/
 void SH_SecondaryToolBar::mainToolBarMainViewPressed()
 {
-	firstButton->setDisabled(true);
-	secondButton->setDisabled(true);
+	setVisibleMainView(true);
+	setVisibleUsersView(false);
+	setVisibleProjectView(false);
+	setVisibleCalendarView(false);
 }
 
+/*
+mainToolBarUsersViewPressed
+*/
 void SH_SecondaryToolBar::mainToolBarUsersViewPressed()
 {
-	thirdButton->setDisabled(true);
-	fourthButton->setDisabled(true);
+	setVisibleMainView(false);
+	setVisibleUsersView(true);
+	setVisibleProjectView(false);
+	setVisibleCalendarView(false);
 }
 
+/*
+mainToolBarProjectViewPressed
+*/
 void SH_SecondaryToolBar::mainToolBarProjectViewPressed()
 {
-	fifthButton->setDisabled(true);
-	sixthButton->setDisabled(true);
+	setVisibleMainView(false);
+	setVisibleUsersView(false);
+	setVisibleProjectView(true);
+	setVisibleCalendarView(false);
 }
 
+/*
+mainToolBarCalendarViewPressed
+*/
 void SH_SecondaryToolBar::mainToolBarCalendarViewPressed()
 {
-	seventhButton->setDisabled(true);
-	eighthButton->setDisabled(true);
-	ninethButton->setDisabled(true);
-	tenthButton->setDisabled(true);
+	setVisibleMainView(false);
+	setVisibleUsersView(false);
+	setVisibleProjectView(false);
+	setVisibleCalendarView(true);
+}
+
+
+void SH_SecondaryToolBar::setVisibleMainView(bool visible)
+{
+	QListIterator<QPushButton*> iter(mainViewButtonList);
+	while (iter.hasNext())
+	{
+		QPushButton *current = iter.next();
+		current->setVisible(visible);
+		
+	}
+}
+
+void SH_SecondaryToolBar::setVisibleUsersView(bool visible)
+{
+	QListIterator<QPushButton*> iter(usersViewButtonList);
+	while (iter.hasNext())
+	{
+		QPushButton *current = iter.next();
+		current->setEnabled(visible);
+	}
+}
+
+void SH_SecondaryToolBar::setVisibleProjectView(bool visible)
+{
+	QListIterator<QPushButton*> iter(projectViewButtonList);
+	while (iter.hasNext())
+	{
+		QPushButton *current = iter.next();
+		current->setEnabled(visible);
+	}
+}
+
+void SH_SecondaryToolBar::setVisibleCalendarView(bool visible)
+{
+	QListIterator<QPushButton*> iter(calendarViewButtonList);
+	while (iter.hasNext())
+	{
+		QPushButton *current = iter.next();
+		current->setEnabled(visible);
+	}
 }

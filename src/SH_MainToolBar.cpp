@@ -15,22 +15,43 @@ SH_MainToolBar::SH_MainToolBar(QWidget *parent)
 	this->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::MinimumExpanding);
 	this->setGeometry(0, 0, 0, 0);
 	this->setMinimumHeight(70);
+
 	this->setLayoutDirection(Qt::RightToLeft);
 	this->setIconSize(QSize(64, 64));
 
-	toolBarSpacer = new QWidget(this);
-	mainView = new QPushButton(this);
-	usersView = new QPushButton(this);
-	projectView = new QPushButton(this);
-	calendarView = new QPushButton(this);
+	toolBarSpacer	= new QWidget(this);
+	mainView		= new QPushButton(this);
+	usersView		= new QPushButton(this);
+	projectView		= new QPushButton(this);
+	calendarView	= new QPushButton(this);
 
 	mainView->setText("MAIN");
 	usersView->setText("USER");
 	projectView->setText("PROJECT");
 	calendarView->setText("CALENDAR");
 
+	mainView->setCheckable(true);
+	usersView->setCheckable(true);
+	projectView->setCheckable(true);
+	calendarView->setCheckable(true);
+
+	mainView->setObjectName("mainViewButton");
+	usersView->setObjectName("usersViewButton");
+	projectView->setObjectName("projectViewButton");
+	calendarView->setObjectName("calendarViewButton");
+
+	// when the application starts, we want the mainView to be the first displayed therefore it's button to be highlighted
+	mainView->setChecked(true);
+	setActiveToolBarButton(mainView);
+
 	createActionsAndSignals();
 	createMenu();
+
+	// setup push button list
+	pushButtonList.insert(1, mainView);
+	pushButtonList.insert(2, usersView);
+	pushButtonList.insert(3, projectView);
+	pushButtonList.insert(4, calendarView);
 }
 
 /*
@@ -116,22 +137,55 @@ void SH_MainToolBar::userQuitRequested()
 	emit quitRequested();
 }
 
+/*
+userMainViewRequested
+*/
 void SH_MainToolBar::userMainViewRequested()
 {
+	setActiveToolBarButton(mainView);
 	emit mainViewPressed();
 }
 
+/*
+userUsersViewRequested
+*/
 void SH_MainToolBar::userUsersViewRequested()
 {
+	setActiveToolBarButton(usersView);
 	emit usersViewPressed();
 }
 
+/*
+userProjectViewRequested
+*/
 void SH_MainToolBar::userProjectViewRequested()
 {
+	setActiveToolBarButton(projectView);
 	emit projectViewPressed();
 }
 
+/*
+userCalendarViewRequested
+*/
 void SH_MainToolBar::userCalendarViewRequested()
 {
+	setActiveToolBarButton(calendarView);
 	emit calendarViewPressed();
+}
+
+/*
+setActiveToolBarButton
+*/
+void SH_MainToolBar::setActiveToolBarButton(QPushButton *activeButton)
+{
+	QListIterator<QPushButton*> iter(pushButtonList);
+	while (iter.hasNext())
+	{
+		QPushButton *current = iter.next();
+
+		if (current->objectName() == activeButton->objectName())
+			activeButton->setChecked(true);
+		else
+			current->setChecked(false);
+	}
 }

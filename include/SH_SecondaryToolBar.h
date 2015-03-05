@@ -5,7 +5,8 @@ SH_SecondaryToolBar
 #ifndef SH_SECONDARYTOOLBAR_H
 #define SH_SECONDARYTOOLBAR_H
 
-#include"include\SH_mainwindow.h"
+#include <qpushbutton.h>
+#include"SH_mainwindow.h"
 
 //forward declare class
 class SH_MainToolBar;
@@ -19,16 +20,21 @@ public:
 	~SH_SecondaryToolBar();
 
 private:
-	QToolButton	*firstButton;
-	QToolButton	*secondButton;
-	QToolButton	*thirdButton;
-	QToolButton	*fourthButton;
-	QToolButton	*fifthButton;
-	QToolButton	*sixthButton;
-	QToolButton	*seventhButton;
-	QToolButton	*eighthButton;
-	QToolButton	*ninethButton;
-	QToolButton	*tenthButton;
+	QPushButton	*firstButton;
+	QPushButton	*secondButton;
+	QPushButton	*thirdButton;
+	QPushButton	*fourthButton;
+	QPushButton	*fifthButton;
+	QPushButton	*sixthButton;
+	QPushButton	*seventhButton;
+	QPushButton	*eighthButton;
+	QPushButton	*ninethButton;
+	QPushButton	*tenthButton;
+
+	QList<QPushButton*> mainViewButtonList;
+	QList<QPushButton*> usersViewButtonList;
+	QList<QPushButton*> projectViewButtonList;
+	QList<QPushButton*> calendarViewButtonList;
 
 	QAction		*firstButtonAction;
 	QAction		*secondButtonAction;
@@ -42,6 +48,11 @@ private:
 	QAction		*tenthButtonAction;
 
 	void		createActions();
+
+	void		setVisibleMainView(bool visible);
+	void        setVisibleUsersView(bool visible);
+	void		setVisibleProjectView(bool visible);
+	void		setVisibleCalendarView(bool visible);
 
 protected:
 	private slots :

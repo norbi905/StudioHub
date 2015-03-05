@@ -32,6 +32,7 @@ private:
 	QPushButton		*usersView;
 	QPushButton		*projectView;
 	QPushButton		*calendarView;
+	QList<QPushButton*> pushButtonList;
 	
 
 	QAction			*logOffAction;
@@ -39,6 +40,7 @@ private:
 	
 	void			createActionsAndSignals();
 	void			createMenu();
+	void			setActiveToolBarButton(QPushButton *activeButton);
 
 private slots:
 	void			userLogOffRequested();
