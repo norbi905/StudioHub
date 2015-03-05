@@ -25,6 +25,7 @@ SH_MainWindow::SH_MainWindow(QWidget *parent)
 	contextQuitAction	= NULL;
 
 	mainToolBar			= new SH_MainToolBar();
+	secondaryToolBar	= new SH_SecondaryToolBar(mainToolBar, this);
 	logInDialogWindow	= new SH_LogInDialog(parent);
 	mainUser			= new SH_User();
 	mySqlConnector		= new SH_MySqlConnector();
@@ -48,6 +49,7 @@ SH_MainWindow::~SH_MainWindow()
 	delete mainUser;
 	delete logInDialogWindow;
 	delete mainToolBar;
+	delete secondaryToolBar;
 
 	delete contextQuitAction;
 }
@@ -89,7 +91,11 @@ void SH_MainWindow::displayApplication(QWidget *parent	)
 {
 	mainToolBar->usernameLabel->setText(mainUser->getUsername());
 	addToolBar(mainToolBar);
+	addToolBarBreak();
+	addToolBar(secondaryToolBar);
+
 	mainToolBar->show();
+	secondaryToolBar->show();
 }
 
 /*
@@ -155,6 +161,7 @@ userRequestedLogOff
 */
 void SH_MainWindow::userRequestedLogOff()
 {
+	removeToolBar(secondaryToolBar);
 	removeToolBar(mainToolBar);
 
 	initiateLogIn(this);

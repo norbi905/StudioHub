@@ -13,12 +13,14 @@
 #include "ui_sh_mainwindow.h"
 
 #include "SH_MainToolBar.h"
+#include "SH_SecondaryToolBar.h"
 #include "SH_LogInDialog.h"
 #include "SH_User.h"
 #include "SH_MySqlConnector.h"
 
 // forward declare classes
 class SH_MainToolBar;
+class SH_SecondaryToolBar;
 class SH_LogInDialog;
 class SH_User;
 class SH_MySqlConnector;
@@ -38,6 +40,7 @@ private:
 	Ui::SH_MainWindowClass ui;
  
 	SH_MainToolBar		*mainToolBar;
+	SH_SecondaryToolBar	*secondaryToolBar;
 	SH_LogInDialog		*logInDialogWindow;
 	SH_User				*mainUser;
 	SH_MySqlConnector	*mySqlConnector;
