@@ -464,3 +464,8 @@ QSizeGrip
 	width: 16px;
 	height: 16px;
 }
+
+QToolBar
+{
+	border: none;
+}

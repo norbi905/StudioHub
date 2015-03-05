@@ -27,20 +27,35 @@ public:
 
 private:
 	QToolButton		*userProfileButton;
+	QWidget			*toolBarSpacer;
+	QPushButton		*mainView;
+	QPushButton		*usersView;
+	QPushButton		*projectView;
+	QPushButton		*calendarView;
 	
 
 	QAction			*logOffAction;
 	QAction			*quitAction;
-
+	
 	void			createActionsAndSignals();
 	void			createMenu();
 
 private slots:
 	void			userLogOffRequested();
 	void			userQuitRequested();
+
+	void			userMainViewRequested();
+	void			userUsersViewRequested();
+	void			userProjectViewRequested();
+	void			userCalendarViewRequested();
+
 signals :
 	void			logOffRequested();
 	void			quitRequested();
+	void			mainViewPressed();
+	void			usersViewPressed();
+	void			projectViewPressed();
+	void			calendarViewPressed();
 
 protected:
 

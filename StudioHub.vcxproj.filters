@@ -80,6 +80,15 @@
     <ClCompile Include="GeneratedFiles\Release\moc_SH_User.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="src\SH_SecondaryToolBar.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_SH_SecondaryToolBar.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_SH_SecondaryToolBar.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="sh_mainwindow.ui">
@@ -104,6 +113,9 @@
       <Filter>Header Files</Filter>
     </CustomBuild>
     <CustomBuild Include="include\SH_User.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="include\SH_SecondaryToolBar.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
   </ItemGroup>

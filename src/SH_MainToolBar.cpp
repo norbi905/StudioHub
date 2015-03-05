@@ -18,6 +18,17 @@ SH_MainToolBar::SH_MainToolBar(QWidget *parent)
 	this->setLayoutDirection(Qt::RightToLeft);
 	this->setIconSize(QSize(64, 64));
 
+	toolBarSpacer = new QWidget(this);
+	mainView = new QPushButton(this);
+	usersView = new QPushButton(this);
+	projectView = new QPushButton(this);
+	calendarView = new QPushButton(this);
+
+	mainView->setText("MAIN");
+	usersView->setText("USER");
+	projectView->setText("PROJECT");
+	calendarView->setText("CALENDAR");
+
 	createActionsAndSignals();
 	createMenu();
 }
@@ -31,6 +42,12 @@ SH_MainToolBar::~SH_MainToolBar()
 	delete quitAction;
 	delete userProfileButton;
 	delete usernameLabel;
+
+	delete calendarView;
+	delete projectView;
+	delete usersView;
+	delete mainView;
+	delete toolBarSpacer;
 }
 
 /*
@@ -47,6 +64,8 @@ void SH_MainToolBar::createMenu()
 	userProfileButton->addAction(quitAction);
 	userProfileButton->setPopupMode(QToolButton::InstantPopup);
 
+	toolBarSpacer->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+
 	// username Label
 	usernameLabel = new QLabel();
 	usernameLabel->setAlignment(Qt::AlignBottom);
@@ -54,6 +73,11 @@ void SH_MainToolBar::createMenu()
 
 	this->addWidget(userProfileButton);
 	this->addWidget(usernameLabel);
+	this->addWidget(toolBarSpacer);
+	this->addWidget(calendarView);
+	this->addWidget(usersView);
+	this->addWidget(projectView);
+	this->addWidget(mainView);
 }
 
 /*
@@ -63,12 +87,17 @@ Creates menus for when the user press and holds the profile button.
 void SH_MainToolBar::createActionsAndSignals()
 {
 	// Actions
-	logOffAction = new QAction("Log Off", this);
-	quitAction = new QAction("Quit", this);
+	logOffAction			= new QAction("Log Off", this);
+	quitAction				= new QAction("Quit", this);
 
 	// Signals
 	connect(logOffAction, SIGNAL(triggered()), this, SLOT(userLogOffRequested()));
 	connect(quitAction, SIGNAL(triggered()), this, SLOT(userQuitRequested()));
+
+	connect(mainView, SIGNAL(released()), this, SLOT(userMainViewRequested()));
+	connect(usersView, SIGNAL(released()), this, SLOT(userUsersViewRequested()));
+	connect(projectView, SIGNAL(released()), this, SLOT(userProjectViewRequested()));
+	connect(calendarView, SIGNAL(released()), this, SLOT(userCalendarViewRequested()));
 }
 
 /*
@@ -85,4 +114,24 @@ quitRequested
 void SH_MainToolBar::userQuitRequested()
 {
 	emit quitRequested();
+}
+
+void SH_MainToolBar::userMainViewRequested()
+{
+	emit mainViewPressed();
+}
+
+void SH_MainToolBar::userUsersViewRequested()
+{
+	emit usersViewPressed();
+}
+
+void SH_MainToolBar::userProjectViewRequested()
+{
+	emit projectViewPressed();
+}
+
+void SH_MainToolBar::userCalendarViewRequested()
+{
+	emit calendarViewPressed();
 }
