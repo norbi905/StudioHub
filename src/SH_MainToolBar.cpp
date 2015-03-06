@@ -189,3 +189,14 @@ void SH_MainToolBar::setActiveToolBarButton(QPushButton *activeButton)
 			current->setChecked(false);
 	}
 }
+
+/*
+resetToolBarButtons
+*/
+void SH_MainToolBar::resetToolBarButtons()
+{
+	mainView->setChecked(true);
+	usersView->setChecked(false);
+	projectView->setChecked(false);
+	calendarView->setChecked(false);
+}

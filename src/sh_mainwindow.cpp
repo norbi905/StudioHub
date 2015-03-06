@@ -25,7 +25,11 @@ SH_MainWindow::SH_MainWindow(QWidget *parent)
 	contextQuitAction	= NULL;
 
 	mainToolBar			= new SH_MainToolBar();
-	secondaryToolBar	= new SH_SecondaryToolBar(mainToolBar, this);
+	mainViewToolBar		= new SH_MainViewToolBar(mainToolBar);
+	projectViewToolBar	= new SH_ProjectViewToolBar(mainToolBar);
+	usersViewToolBar	= new SH_UsersViewToolBar(mainToolBar);
+	calendarViewToolBar = new SH_CalendarViewToolBar(mainToolBar);
+
 	logInDialogWindow	= new SH_LogInDialog(parent);
 	mainUser			= new SH_User();
 	mySqlConnector		= new SH_MySqlConnector();
@@ -33,6 +37,14 @@ SH_MainWindow::SH_MainWindow(QWidget *parent)
 	// create connectors
 	connect(mainToolBar, SIGNAL(logOffRequested()), this, SLOT(userRequestedLogOff()));
 	connect(mainToolBar, SIGNAL(quitRequested()), this, SLOT(quitApplication()));
+	connect(mainToolBar, SIGNAL(mainViewPressed()), this, SLOT(mainToolBarMainViewPressed()));
+	connect(mainToolBar, SIGNAL(projectViewPressed()), this, SLOT(mainToolBarProjectViewPressed()));
+	connect(mainToolBar, SIGNAL(usersViewPressed()), this, SLOT(mainToolBarUsersViewPressed()));
+	connect(mainToolBar, SIGNAL(calendarViewPressed()), this, SLOT(mainToolBarCalendarViewPressed()));
+
+	// create view
+	projectListView = new SH_ProjectListView(this);
+	projectListView->show();
 
 	ui.setupUi(this);
 	this->show();
@@ -49,7 +61,10 @@ SH_MainWindow::~SH_MainWindow()
 	delete mainUser;
 	delete logInDialogWindow;
 	delete mainToolBar;
-	delete secondaryToolBar;
+	delete mainViewToolBar;
+	delete projectViewToolBar;
+	delete usersViewToolBar;
+	delete calendarViewToolBar;
 
 	delete contextQuitAction;
 }
@@ -75,7 +90,9 @@ void SH_MainWindow::mouseMoveEvent(QMouseEvent *event)
 	move(event->globalX() - mouseClick_X_Coord, event->globalY() - mouseClick_Y_Coord);
 }
 
-
+/*
+createContextActions
+*/
 void SH_MainWindow::createContextActions()
 {
 	if (contextQuitAction == NULL)
@@ -87,15 +104,27 @@ void SH_MainWindow::createContextActions()
 	}
 }
 
+/*
+displayApplication
+*/
 void SH_MainWindow::displayApplication(QWidget *parent	)
 {
 	mainToolBar->usernameLabel->setText(mainUser->getUsername());
 	addToolBar(mainToolBar);
 	addToolBarBreak();
-	addToolBar(secondaryToolBar);
+	addToolBar(mainViewToolBar);
+	addToolBar(projectViewToolBar);
+	addToolBar(usersViewToolBar);
+	addToolBar(calendarViewToolBar);
 
 	mainToolBar->show();
-	secondaryToolBar->show();
+	mainViewToolBar->show();
+	projectViewToolBar->hide();
+	usersViewToolBar->hide();
+	calendarViewToolBar->hide();
+
+	// we want the main view button to be selected
+	mainToolBar->resetToolBarButtons();
 }
 
 /*
@@ -118,6 +147,9 @@ void SH_MainWindow::quitApplication()
 	QApplication::quit();
 }
 
+/*
+initiateLogIn
+*/
 void SH_MainWindow::initiateLogIn(QWidget *parent)
 {
 	int result = logInDialogWindow->exec();
@@ -161,8 +193,57 @@ userRequestedLogOff
 */
 void SH_MainWindow::userRequestedLogOff()
 {
-	removeToolBar(secondaryToolBar);
 	removeToolBar(mainToolBar);
+	removeToolBar(mainViewToolBar);
+	removeToolBar(projectViewToolBar);
+	removeToolBar(usersViewToolBar);
+	removeToolBar(calendarViewToolBar);
 
 	initiateLogIn(this);
+}
+
+/*
+mainToolBarMainViewPressed
+*/
+void SH_MainWindow::mainToolBarMainViewPressed()
+{
+	mainViewToolBar->show();
+	projectViewToolBar->hide();
+	usersViewToolBar->hide();
+	calendarViewToolBar->hide();
+}
+
+/*
+mainToolBarProjectViewPressed
+*/
+void SH_MainWindow::mainToolBarProjectViewPressed()
+{
+	mainViewToolBar->hide();
+	projectViewToolBar->show();
+	usersViewToolBar->hide();
+	calendarViewToolBar->hide();
+
+	projectListView->show();
+}
+
+/*
+mainToolBarUsersViewPressed
+*/
+void SH_MainWindow::mainToolBarUsersViewPressed()
+{
+	mainViewToolBar->hide();
+	projectViewToolBar->hide();
+	usersViewToolBar->show();
+	calendarViewToolBar->hide();
+}
+
+/*
+mainToolBarCalendarViewPressed
+*/
+void SH_MainWindow::mainToolBarCalendarViewPressed()
+{
+	mainViewToolBar->hide();
+	projectViewToolBar->hide();
+	usersViewToolBar ->hide();
+	calendarViewToolBar->show();
 }
