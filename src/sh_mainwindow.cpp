@@ -8,31 +8,29 @@
 Constructor
 */
 SH_MainWindow::SH_MainWindow(QWidget *parent)
-	: QMainWindow(parent)
+	: QWidget(parent)
 {
 	/* Setup main window
 	::FramelessWindowHint - We dont want any window frames
-
 	*/
 	setWindowFlags(Qt::FramelessWindowHint);
+
 	setMinimumSize(1280, 1024);
 	
-	/* Using default ::DefaultContextMenu for now
-	This way, contextMenuEvent() handler is called instead of ours...might change this later
-	setContextMenuPolicy(Qt::CustomContextMenu);
-	*/
-
 	contextQuitAction	= NULL;
 
-	mainToolBar			= new SH_MainToolBar();
-	mainViewToolBar		= new SH_MainViewToolBar(mainToolBar);
-	projectViewToolBar	= new SH_ProjectViewToolBar(mainToolBar);
-	usersViewToolBar	= new SH_UsersViewToolBar(mainToolBar);
-	calendarViewToolBar = new SH_CalendarViewToolBar(mainToolBar);
+	mainToolBar			= new SH_MainToolBar(this);
+	mainViewToolBar		= new SH_MainViewToolBar(mainToolBar, this);
+	projectViewToolBar	= new SH_ProjectViewToolBar(mainToolBar, this);
+	usersViewToolBar	= new SH_UsersViewToolBar(mainToolBar, this);
+	calendarViewToolBar = new SH_CalendarViewToolBar(mainToolBar, this);
 
 	logInDialogWindow	= new SH_LogInDialog(parent);
 	mainUser			= new SH_User();
 	mySqlConnector		= new SH_MySqlConnector();
+
+	mainLayout			= new QVBoxLayout(this);
+	stackedLayout		= new QStackedLayout(this);
 
 	// create connectors
 	connect(mainToolBar, SIGNAL(logOffRequested()), this, SLOT(userRequestedLogOff()));
@@ -42,12 +40,41 @@ SH_MainWindow::SH_MainWindow(QWidget *parent)
 	connect(mainToolBar, SIGNAL(usersViewPressed()), this, SLOT(mainToolBarUsersViewPressed()));
 	connect(mainToolBar, SIGNAL(calendarViewPressed()), this, SLOT(mainToolBarCalendarViewPressed()));
 
+	connect(mainToolBar, SIGNAL(mainViewPressed()), stackedLayout, SLOT(mainToolBarMainViewPressed()));
+	connect(mainToolBar, SIGNAL(projectViewPressed()), stackedLayout, SLOT(mainToolBarProjectViewPressed()));
+	connect(mainToolBar, SIGNAL(usersViewPressed()), stackedLayout, SLOT(mainToolBarUsersViewPressed()));
+	connect(mainToolBar, SIGNAL(calendarViewPressed()), stackedLayout, SLOT(mainToolBarCalendarViewPressed()));
+	
+
 	// create view
 	projectListView = new SH_ProjectListView(this);
-	projectListView->show();
+	projectListView->hide();
+	mainView		= new SH_MainView(this);
+	mainView->hide();
+	usersView		= new SH_UsersView(this);
+	usersView->hide();
+	calendarView	= new SH_CalendarView(this);
+	calendarView->hide();
 
-	ui.setupUi(this);
-	this->show();
+	//ui.setupUi(this);
+	//this->show();
+	
+	mainLayout->addWidget(mainToolBar);
+	mainLayout->addWidget(mainViewToolBar);
+	mainLayout->addWidget(projectViewToolBar);
+	mainLayout->addWidget(usersViewToolBar);
+	mainLayout->addWidget(calendarViewToolBar);
+
+	stackedLayout->addWidget(mainView);
+	stackedLayout->addWidget(projectListView);
+	stackedLayout->addWidget(usersView);
+	stackedLayout->addWidget(calendarView);
+
+	mainLayout->addLayout(stackedLayout);
+
+	setLayout(mainLayout);
+
+	
 
 	initiateLogIn(parent);
 }
@@ -66,6 +93,9 @@ SH_MainWindow::~SH_MainWindow()
 	delete usersViewToolBar;
 	delete calendarViewToolBar;
 
+	delete projectListView;
+	delete mainView;
+
 	delete contextQuitAction;
 }
 
@@ -74,7 +104,7 @@ MousePressEvent
 */
 void SH_MainWindow::mousePressEvent(QMouseEvent *event)
 {
-	QMainWindow::mousePressEvent(event);
+	QWidget::mousePressEvent(event);
 
 	mouseClick_X_Coord = event->x();
 	mouseClick_Y_Coord = event->y();
@@ -85,7 +115,7 @@ MouseMoveEvent
 */
 void SH_MainWindow::mouseMoveEvent(QMouseEvent *event)
 {
-	QMainWindow::mouseMoveEvent(event);
+	QWidget::mouseMoveEvent(event);
 
 	move(event->globalX() - mouseClick_X_Coord, event->globalY() - mouseClick_Y_Coord);
 }
@@ -110,21 +140,17 @@ displayApplication
 void SH_MainWindow::displayApplication(QWidget *parent	)
 {
 	mainToolBar->usernameLabel->setText(mainUser->getUsername());
-	addToolBar(mainToolBar);
-	addToolBarBreak();
-	addToolBar(mainViewToolBar);
-	addToolBar(projectViewToolBar);
-	addToolBar(usersViewToolBar);
-	addToolBar(calendarViewToolBar);
-
-	mainToolBar->show();
-	mainViewToolBar->show();
+	
 	projectViewToolBar->hide();
 	usersViewToolBar->hide();
 	calendarViewToolBar->hide();
+	mainToolBar->show();
+	mainViewToolBar->show();
 
 	// we want the main view button to be selected
 	mainToolBar->resetToolBarButtons();
+
+	stackedLayout->setCurrentIndex(0);
 }
 
 /*
@@ -144,7 +170,8 @@ This gets called when a user right clicks and selects quit from the context menu
 */
 void SH_MainWindow::quitApplication()
 {
-	QApplication::quit();
+	//QApplication::quit();
+	exit(0);
 }
 
 /*
@@ -162,7 +189,7 @@ void SH_MainWindow::initiateLogIn(QWidget *parent)
 		bool connected = mySqlConnector->connectToDatabase(username, password);
 		if (connected)
 		{
-			this->statusBar()->showMessage("Connected as: " + username);
+			//this->statusBar()->showMessage("Connected as: " + username);
 			createContextActions();
 			
 			//set-up user
@@ -177,7 +204,7 @@ void SH_MainWindow::initiateLogIn(QWidget *parent)
 		}
 		else
 		{
-			this->statusBar()->showMessage(mySqlConnector->getDBError());
+			//this->statusBar()->showMessage(mySqlConnector->getDBError());
 			initiateLogIn(parent);
 		}
 	}
@@ -193,11 +220,17 @@ userRequestedLogOff
 */
 void SH_MainWindow::userRequestedLogOff()
 {
-	removeToolBar(mainToolBar);
-	removeToolBar(mainViewToolBar);
-	removeToolBar(projectViewToolBar);
-	removeToolBar(usersViewToolBar);
-	removeToolBar(calendarViewToolBar);
+	mainToolBar->hide();
+	mainViewToolBar->hide();
+	projectViewToolBar->hide();
+	usersViewToolBar->hide();
+	calendarViewToolBar->hide();
+
+	// get rid of all views
+	projectListView->hide();
+	mainView->hide();
+	usersView->hide();
+	calendarView->hide();
 
 	initiateLogIn(this);
 }
@@ -211,6 +244,9 @@ void SH_MainWindow::mainToolBarMainViewPressed()
 	projectViewToolBar->hide();
 	usersViewToolBar->hide();
 	calendarViewToolBar->hide();
+
+	stackedLayout->setCurrentIndex(0);
+	//mainView->show();
 }
 
 /*
@@ -223,7 +259,10 @@ void SH_MainWindow::mainToolBarProjectViewPressed()
 	usersViewToolBar->hide();
 	calendarViewToolBar->hide();
 
-	projectListView->show();
+	stackedLayout->setCurrentIndex(1);
+	//projectListView->show();
+	
+	//mainView->hide();
 }
 
 /*
@@ -235,6 +274,10 @@ void SH_MainWindow::mainToolBarUsersViewPressed()
 	projectViewToolBar->hide();
 	usersViewToolBar->show();
 	calendarViewToolBar->hide();
+
+	stackedLayout->setCurrentIndex(2);
+	//projectListView->hide();
+	//mainView->hide();
 }
 
 /*
@@ -246,4 +289,8 @@ void SH_MainWindow::mainToolBarCalendarViewPressed()
 	projectViewToolBar->hide();
 	usersViewToolBar ->hide();
 	calendarViewToolBar->show();
+
+	stackedLayout->setCurrentIndex(3);
+	//projectListView->hide();
+	//mainView->hide();
 }

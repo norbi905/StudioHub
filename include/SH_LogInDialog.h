@@ -10,6 +10,8 @@ SH_LogInDialog
 #include "qpushbutton.h"
 #include "qaction.h"
 #include "qlineedit.h"
+#include "qgroupbox.h"
+#include "qgridlayout.h"
 
 #include "sh_mainwindow.h"
 
@@ -35,10 +37,9 @@ private:
 	void		createActions();
 	void		createSignals();
 	void		createEditBox();
-	void		createLabels();
 
-	QLabel		*usernameLabel;
-	QLabel		*passwordLabel;
+	QGroupBox		*logInGroupBox;
+	QGridLayout		*logInLayout;
 
 	QPushButton	*logInButton;
 	QPushButton	*cancelButton;

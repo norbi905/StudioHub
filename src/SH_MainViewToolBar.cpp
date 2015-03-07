@@ -7,8 +7,8 @@ SH_MainViewToolBar
 /*
 Constructor
 */
-SH_MainViewToolBar::SH_MainViewToolBar(SH_MainToolBar *mainToolBar)
-	: QToolBar()
+SH_MainViewToolBar::SH_MainViewToolBar(SH_MainToolBar *mainToolBar, QWidget *parent)
+	: QToolBar(parent)
 {
 	connect(mainToolBar, SIGNAL(mainViewPressed()), this, SLOT(mainToolBarMainViewPressed()));
 

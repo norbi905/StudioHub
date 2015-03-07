@@ -71,9 +71,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="GeneratedFiles\qrc_sh_mainwindow.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_SH_LogInDialog.cpp">
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
@@ -84,12 +81,6 @@
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Release\moc_SH_MainToolBar.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_sh_mainwindow.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_sh_mainwindow.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
     <ClCompile Include="src\main.cpp">
@@ -170,16 +161,43 @@
     <ClCompile Include="GeneratedFiles\Release\moc_SH_ProjectListView.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="src\SH_MainView.cpp">
+      <Filter>Source Files\Views</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_SH_MainView.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_SH_MainView.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SH_UsersView.cpp">
+      <Filter>Source Files\Views</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_SH_UsersView.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_SH_UsersView.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_sh_mainwindow.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_sh_mainwindow.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SH_CalendarView.cpp">
+      <Filter>Source Files\Views</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_SH_CalendarView.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_SH_CalendarView.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="sh_mainwindow.ui">
       <Filter>Form Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="sh_mainwindow.qrc">
-      <Filter>Resource Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="darkorange.stylesheet">
-      <Filter>Resource Files</Filter>
     </CustomBuild>
     <CustomBuild Include="GeneratedFiles\ui_sh_mainwindow.h">
       <Filter>Generated Files</Filter>
@@ -214,10 +232,24 @@
     <CustomBuild Include="include\SH_ProjectListView.h">
       <Filter>Header Files\Views</Filter>
     </CustomBuild>
+    <CustomBuild Include="include\SH_MainView.h">
+      <Filter>Header Files\Views</Filter>
+    </CustomBuild>
+    <CustomBuild Include="include\SH_UsersView.h">
+      <Filter>Header Files\Views</Filter>
+    </CustomBuild>
+    <CustomBuild Include="include\SH_CalendarView.h">
+      <Filter>Header Files\Views</Filter>
+    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\SH_MySqlConnector.h">
       <Filter>Header Files\MySQL</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\StudioHubResources\Stylesheet\StudioHub.stylesheet">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

@@ -11,15 +11,21 @@ SH_LogInDialog::SH_LogInDialog(QWidget *parent, Qt::WindowFlags)
 	: QDialog(parent)
 {
 	// Set-up window
-	//this->setWindowFlags(Qt::FramelessWindowHint);
-	//this->setWindowFlags(Qt::SubWindow);
-	this->setFixedSize(400, 100);
-	//this->setParent(parent);
+	this->setWindowFlags(Qt::FramelessWindowHint);
+	this->setFixedSize(240, 110);
 
+	logInLayout		= new QGridLayout();
+	logInGroupBox	= new QGroupBox("Log-in", this);
 
-	createLabels();
 	createButtons();
 	createEditBox();
+
+	logInLayout->addWidget(usernameEditBox, 0, 0);
+	logInLayout->addWidget(passwordEditBox, 1, 0);
+	logInLayout->addWidget(logInButton, 2, 0);
+	logInLayout->addWidget(cancelButton, 2, 1);
+	
+	logInGroupBox->setLayout(logInLayout);
 }
 
 /*
@@ -59,8 +65,8 @@ void SH_LogInDialog::createButtons()
 	logInButton = new QPushButton("Log In", this);
 	cancelButton = new QPushButton("Cancel", this);
 
-	logInButton->setGeometry(125, 70, 80, 25);
-	cancelButton->setGeometry(205, 70, 80, 25);
+	//logInButton->setGeometry(125, 70, 80, 25);
+	//cancelButton->setGeometry(205, 70, 80, 25);
 
 	createActions();
 	createSignals();
@@ -81,7 +87,6 @@ void SH_LogInDialog::createActions()
 }
 
 
-
 /*
 createSignals
 */
@@ -99,21 +104,12 @@ void SH_LogInDialog::createEditBox()
 	usernameEditBox = new QLineEdit(this);
 	passwordEditBox = new QLineEdit(this);
 
-	usernameEditBox->setGeometry(120, 10, 170, 22);
-	passwordEditBox->setGeometry(120, 40, 170, 22);
+	usernameEditBox->setPlaceholderText("username");
+	passwordEditBox->setPlaceholderText("password");
+
+	//usernameEditBox->setGeometry(120, 10, 170, 22);
+	//passwordEditBox->setGeometry(120, 40, 170, 22);
 	passwordEditBox->setEchoMode(QLineEdit::Password);
-}
-
-/*
-createLabels
-*/
-void SH_LogInDialog::createLabels()
-{
-	usernameLabel = new QLabel("Username:", this);
-	passwordLabel = new QLabel("Password:", this);
-
-	usernameLabel->setGeometry(20, 8, 80, 25);
-	passwordLabel->setGeometry(20, 38, 80, 25);
 }
 
 QString SH_LogInDialog::getUsername()

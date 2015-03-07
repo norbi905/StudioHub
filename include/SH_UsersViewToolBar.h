@@ -17,7 +17,7 @@ class SH_UsersViewToolBar : public QToolBar
 	Q_OBJECT
 
 public:
-	SH_UsersViewToolBar(SH_MainToolBar *mainToolBar);
+	SH_UsersViewToolBar(SH_MainToolBar *mainToolBar, QWidget *parent);
 	~SH_UsersViewToolBar();
 
 private:

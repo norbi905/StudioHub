@@ -30,7 +30,12 @@ public:
     {
         if (SH_MainWindowClass->objectName().isEmpty())
             SH_MainWindowClass->setObjectName(QStringLiteral("SH_MainWindowClass"));
-        SH_MainWindowClass->resize(1021, 752);
+        SH_MainWindowClass->resize(1120, 990);
+        QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(SH_MainWindowClass->sizePolicy().hasHeightForWidth());
+        SH_MainWindowClass->setSizePolicy(sizePolicy);
         centralWidget = new QWidget(SH_MainWindowClass);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         SH_MainWindowClass->setCentralWidget(centralWidget);

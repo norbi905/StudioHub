@@ -17,7 +17,7 @@ class SH_ProjectViewToolBar : public QToolBar
 	Q_OBJECT
 
 public:
-	SH_ProjectViewToolBar(SH_MainToolBar *mainToolBar);
+	SH_ProjectViewToolBar(SH_MainToolBar *mainToolBar, QWidget *parent);
 	~SH_ProjectViewToolBar();
 
 private:
