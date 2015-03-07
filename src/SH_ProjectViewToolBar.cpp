@@ -7,8 +7,8 @@ SH_ProjectViewToolBar
 /*
 Constructor
 */
-SH_ProjectViewToolBar::SH_ProjectViewToolBar(SH_MainToolBar *mainToolBar)
-	: QToolBar()
+SH_ProjectViewToolBar::SH_ProjectViewToolBar(SH_MainToolBar *mainToolBar, QWidget *parent)
+	: QToolBar(parent)
 {
 	connect(mainToolBar, SIGNAL(projectViewPressed()), this, SLOT(mainToolBarProjectViewPressed()));
 

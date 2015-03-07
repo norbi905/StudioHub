@@ -17,7 +17,7 @@ class SH_CalendarViewToolBar : public QToolBar
 	Q_OBJECT
 
 public:
-	SH_CalendarViewToolBar(SH_MainToolBar *mainToolBar);
+	SH_CalendarViewToolBar(SH_MainToolBar *mainToolBar, QWidget *parent);
 	~SH_CalendarViewToolBar();
 
 private:

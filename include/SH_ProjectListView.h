@@ -17,7 +17,6 @@ public:
 	~SH_ProjectListView();
 
 private:
-	
 
 protected:
 

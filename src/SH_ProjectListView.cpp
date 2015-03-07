@@ -10,7 +10,11 @@ Constructor
 SH_ProjectListView::SH_ProjectListView(QWidget *parent)
 	: QTableView(parent)
 {
+	//setLayout(parent->layout());
 
+	//QLabel *test = new QLabel(parent);
+	//test->setText("project");
+	////test->show();
 }
 
 /*

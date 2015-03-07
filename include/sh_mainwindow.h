@@ -10,7 +10,8 @@
 #include <QMouseEvent>
 #include <qmenu.h>
 #include <qtoolbar.h>
-#include "ui_sh_mainwindow.h"
+#include <qstackedlayout.h>
+//#include "ui_sh_mainwindow.h"
 
 #include "SH_MainToolBar.h"
 #include "SH_MainViewToolBar.h"
@@ -21,6 +22,9 @@
 #include "SH_User.h"
 #include "SH_MySqlConnector.h"
 #include "SH_ProjectListView.h"
+#include "SH_MainView.h"
+#include "SH_UsersView.h"
+#include "SH_CalendarView.h"
 
 // forward declare classes
 class SH_MainToolBar;
@@ -32,8 +36,11 @@ class SH_LogInDialog;
 class SH_User;
 class SH_MySqlConnector;
 class SH_ProjectListView;
+class SH_MainView;
+class SH_UsersView;
+class SH_CalendarView;
 
-class SH_MainWindow : public QMainWindow
+class SH_MainWindow : public QWidget
 {
 	Q_OBJECT
 
@@ -42,10 +49,10 @@ public:
 	SH_MainWindow(QWidget *parent = 0);
 	~SH_MainWindow();
 
-	//void				userRequestedLogOff(QWidget	*parent);
+	void				userRequestedLogOff(QWidget	*parent);
 
 private:
-	Ui::SH_MainWindowClass ui;
+	//Ui::SH_MainWindowClass ui;
  
 	// create main and additional toolbars
 	SH_MainToolBar			*mainToolBar;
@@ -56,11 +63,16 @@ private:
 
 	//create views
 	SH_ProjectListView		*projectListView;
-
+	SH_MainView				*mainView;
+	SH_UsersView			*usersView;
+	SH_CalendarView			*calendarView;
 
 	SH_LogInDialog		*logInDialogWindow;
 	SH_User				*mainUser;
 	SH_MySqlConnector	*mySqlConnector;
+
+	QStackedLayout		*stackedLayout;
+	QVBoxLayout			*mainLayout;
 
 	QAction				*contextQuitAction;
 	

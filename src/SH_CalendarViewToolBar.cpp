@@ -7,8 +7,8 @@ SH_CalendarViewToolBar
 /*
 Constructor
 */
-SH_CalendarViewToolBar::SH_CalendarViewToolBar(SH_MainToolBar *mainToolBar)
-	: QToolBar()
+SH_CalendarViewToolBar::SH_CalendarViewToolBar(SH_MainToolBar *mainToolBar, QWidget *parent)
+	: QToolBar(parent)
 {
 	connect(mainToolBar, SIGNAL(calendarViewPressed()), this, SLOT(mainToolBarcalendarViewPressed()));
 

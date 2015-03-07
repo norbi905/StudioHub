@@ -14,10 +14,12 @@ SH_MainToolBar::SH_MainToolBar(QWidget *parent)
 	this->setMovable(false);
 	this->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::MinimumExpanding);
 	this->setGeometry(0, 0, 0, 0);
-	this->setMinimumHeight(70);
+	//this->setMinimumHeight(70);
+	this->setMaximumHeight(50);
 
 	this->setLayoutDirection(Qt::RightToLeft);
 	this->setIconSize(QSize(64, 64));
+	this->setAllowedAreas(Qt::TopToolBarArea);
 
 	toolBarSpacer	= new QWidget(this);
 	mainView		= new QPushButton(this);
@@ -80,7 +82,7 @@ void SH_MainToolBar::createMenu()
 	// Profile button
 	userProfileButton = new QToolButton(this);
 	
-	userProfileButton->setIcon(QIcon("../StudioHubIcons/DefaultProfilePic.png"));
+	userProfileButton->setIcon(QIcon("../StudioHubResources/ProfilePic/DefaultProfilePic.png"));
 	userProfileButton->addAction(logOffAction);
 	userProfileButton->addAction(quitAction);
 	userProfileButton->setPopupMode(QToolButton::InstantPopup);

@@ -7,8 +7,8 @@ SH_UsersViewToolBar
 /*
 Constructor
 */
-SH_UsersViewToolBar::SH_UsersViewToolBar(SH_MainToolBar *mainToolBar)
-	: QToolBar()
+SH_UsersViewToolBar::SH_UsersViewToolBar(SH_MainToolBar *mainToolBar, QWidget *parent)
+	: QToolBar(parent)
 {
 	connect(mainToolBar, SIGNAL(usersViewPressed()), this, SLOT(mainToolBarUsersViewPressed()));
 
