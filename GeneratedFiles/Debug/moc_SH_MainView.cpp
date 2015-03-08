@@ -61,7 +61,7 @@ void SH_MainView::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
 }
 
 const QMetaObject SH_MainView::staticMetaObject = {
-    { &QLabel::staticMetaObject, qt_meta_stringdata_SH_MainView.data,
+    { &QTextEdit::staticMetaObject, qt_meta_stringdata_SH_MainView.data,
       qt_meta_data_SH_MainView,  qt_static_metacall, Q_NULLPTR, Q_NULLPTR}
 };
 
@@ -76,12 +76,12 @@ void *SH_MainView::qt_metacast(const char *_clname)
     if (!_clname) return Q_NULLPTR;
     if (!strcmp(_clname, qt_meta_stringdata_SH_MainView.stringdata))
         return static_cast<void*>(const_cast< SH_MainView*>(this));
-    return QLabel::qt_metacast(_clname);
+    return QTextEdit::qt_metacast(_clname);
 }
 
 int SH_MainView::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 {
-    _id = QLabel::qt_metacall(_c, _id, _a);
+    _id = QTextEdit::qt_metacall(_c, _id, _a);
     if (_id < 0)
         return _id;
     return _id;

@@ -8,7 +8,7 @@ SH_UsersView
 Constructor
 */
 SH_UsersView::SH_UsersView(QWidget *parent)
-	: QTableView(parent)
+	: QTreeView(parent)
 {
 
 }
@@ -19,4 +19,13 @@ Destructor
 SH_UsersView::~SH_UsersView()
 {
 
+}
+
+/*
+setUserNameTableModel
+*/
+void SH_UsersView::setUserNameTableModel(QSqlTableModel *model)
+{
+	//userNameTableModel = model;
+	this->setModel(model);
 }

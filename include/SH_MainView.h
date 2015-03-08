@@ -13,7 +13,7 @@ SH_MainView
 // forward declare class
 class SH_MainWindow;
 
-class SH_MainView : public QLabel
+class SH_MainView : public QTextEdit
 {
 	Q_OBJECT
 
@@ -21,9 +21,7 @@ public:
 	SH_MainView(QWidget *parent = 0);
 	~SH_MainView();
 
-	QLabel	*test;
-
-	void	init(QWidget *parent, QStackedLayout *layout);
+	void	addMessage(QString message);
 
 private:
 

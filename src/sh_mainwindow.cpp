@@ -29,8 +29,8 @@ SH_MainWindow::SH_MainWindow(QWidget *parent)
 	mainUser			= new SH_User();
 	mySqlConnector		= new SH_MySqlConnector();
 
-	mainLayout			= new QVBoxLayout(this);
-	stackedLayout		= new QStackedLayout(this);
+	mainLayout			= new QGridLayout(this);
+	leftStackedLayout	= new QStackedLayout(this);
 
 	// create connectors
 	connect(mainToolBar, SIGNAL(logOffRequested()), this, SLOT(userRequestedLogOff()));
@@ -40,11 +40,10 @@ SH_MainWindow::SH_MainWindow(QWidget *parent)
 	connect(mainToolBar, SIGNAL(usersViewPressed()), this, SLOT(mainToolBarUsersViewPressed()));
 	connect(mainToolBar, SIGNAL(calendarViewPressed()), this, SLOT(mainToolBarCalendarViewPressed()));
 
-	connect(mainToolBar, SIGNAL(mainViewPressed()), stackedLayout, SLOT(mainToolBarMainViewPressed()));
-	connect(mainToolBar, SIGNAL(projectViewPressed()), stackedLayout, SLOT(mainToolBarProjectViewPressed()));
-	connect(mainToolBar, SIGNAL(usersViewPressed()), stackedLayout, SLOT(mainToolBarUsersViewPressed()));
-	connect(mainToolBar, SIGNAL(calendarViewPressed()), stackedLayout, SLOT(mainToolBarCalendarViewPressed()));
-	
+	connect(mainToolBar, SIGNAL(mainViewPressed()), leftStackedLayout, SLOT(mainToolBarMainViewPressed()));
+	connect(mainToolBar, SIGNAL(projectViewPressed()), leftStackedLayout, SLOT(mainToolBarProjectViewPressed()));
+	connect(mainToolBar, SIGNAL(usersViewPressed()), leftStackedLayout, SLOT(mainToolBarUsersViewPressed()));
+	connect(mainToolBar, SIGNAL(calendarViewPressed()), leftStackedLayout, SLOT(mainToolBarCalendarViewPressed()));
 
 	// create view
 	projectListView = new SH_ProjectListView(this);
@@ -53,28 +52,30 @@ SH_MainWindow::SH_MainWindow(QWidget *parent)
 	mainView->hide();
 	usersView		= new SH_UsersView(this);
 	usersView->hide();
+	usersViewDetails = new SH_UsersViewDetails(this);
+	usersViewDetails->hide();
 	calendarView	= new SH_CalendarView(this);
 	calendarView->hide();
 
 	//ui.setupUi(this);
 	//this->show();
 	
-	mainLayout->addWidget(mainToolBar);
-	mainLayout->addWidget(mainViewToolBar);
-	mainLayout->addWidget(projectViewToolBar);
-	mainLayout->addWidget(usersViewToolBar);
-	mainLayout->addWidget(calendarViewToolBar);
+	mainLayout->addWidget(mainToolBar, 0, 0, 1, 2);
+	mainLayout->addWidget(mainViewToolBar, 1, 0);
+	mainLayout->addWidget(projectViewToolBar,1, 0);
+	mainLayout->addWidget(usersViewToolBar, 1, 0);
+	mainLayout->addWidget(calendarViewToolBar, 1, 0);
 
-	stackedLayout->addWidget(mainView);
-	stackedLayout->addWidget(projectListView);
-	stackedLayout->addWidget(usersView);
-	stackedLayout->addWidget(calendarView);
+	mainLayout->addWidget(usersViewDetails, 2, 1);
 
-	mainLayout->addLayout(stackedLayout);
+	leftStackedLayout->addWidget(mainView);
+	leftStackedLayout->addWidget(projectListView);
+	leftStackedLayout->addWidget(usersView);
+	leftStackedLayout->addWidget(calendarView);
 
-	setLayout(mainLayout);
-
+	mainLayout->addLayout(leftStackedLayout, 2, 0);
 	
+	setLayout(mainLayout);
 
 	initiateLogIn(parent);
 }
@@ -150,7 +151,7 @@ void SH_MainWindow::displayApplication(QWidget *parent	)
 	// we want the main view button to be selected
 	mainToolBar->resetToolBarButtons();
 
-	stackedLayout->setCurrentIndex(0);
+	leftStackedLayout->setCurrentIndex(0);
 }
 
 /*
@@ -189,12 +190,15 @@ void SH_MainWindow::initiateLogIn(QWidget *parent)
 		bool connected = mySqlConnector->connectToDatabase(username, password);
 		if (connected)
 		{
-			//this->statusBar()->showMessage("Connected as: " + username);
+			mainView->addMessage("Connected as: " + username);
 			createContextActions();
 			
 			//set-up user
 			mainUser->setUsername(username);
 			mainUser->setAccess("S");
+
+			//set-up project list view
+			usersView->setUserNameTableModel(mySqlConnector->getUserNameTable());
 
 			mainUser->setLoggedIn(true);
 
@@ -204,7 +208,7 @@ void SH_MainWindow::initiateLogIn(QWidget *parent)
 		}
 		else
 		{
-			//this->statusBar()->showMessage(mySqlConnector->getDBError());
+			mainView->addMessage(mySqlConnector->getDBError());
 			initiateLogIn(parent);
 		}
 	}
@@ -230,6 +234,7 @@ void SH_MainWindow::userRequestedLogOff()
 	projectListView->hide();
 	mainView->hide();
 	usersView->hide();
+	usersViewDetails->hide();
 	calendarView->hide();
 
 	initiateLogIn(this);
@@ -245,8 +250,8 @@ void SH_MainWindow::mainToolBarMainViewPressed()
 	usersViewToolBar->hide();
 	calendarViewToolBar->hide();
 
-	stackedLayout->setCurrentIndex(0);
-	//mainView->show();
+	leftStackedLayout->setCurrentIndex(0);
+	usersViewDetails->hide();
 }
 
 /*
@@ -259,10 +264,8 @@ void SH_MainWindow::mainToolBarProjectViewPressed()
 	usersViewToolBar->hide();
 	calendarViewToolBar->hide();
 
-	stackedLayout->setCurrentIndex(1);
-	//projectListView->show();
-	
-	//mainView->hide();
+	leftStackedLayout->setCurrentIndex(1);
+	usersViewDetails->hide();
 }
 
 /*
@@ -275,9 +278,8 @@ void SH_MainWindow::mainToolBarUsersViewPressed()
 	usersViewToolBar->show();
 	calendarViewToolBar->hide();
 
-	stackedLayout->setCurrentIndex(2);
-	//projectListView->hide();
-	//mainView->hide();
+	leftStackedLayout->setCurrentIndex(2);
+	usersViewDetails->show();
 }
 
 /*
@@ -290,7 +292,6 @@ void SH_MainWindow::mainToolBarCalendarViewPressed()
 	usersViewToolBar ->hide();
 	calendarViewToolBar->show();
 
-	stackedLayout->setCurrentIndex(3);
-	//projectListView->hide();
-	//mainView->hide();
+	leftStackedLayout->setCurrentIndex(3);
+	usersViewDetails->hide();
 }

@@ -8,13 +8,9 @@ SH_ProjectListView
 Constructor
 */
 SH_ProjectListView::SH_ProjectListView(QWidget *parent)
-	: QTableView(parent)
+	: QTreeView(parent)
 {
-	//setLayout(parent->layout());
-
-	//QLabel *test = new QLabel(parent);
-	//test->setText("project");
-	////test->show();
+	//this->setStyleSheet("border: none;");
 }
 
 /*

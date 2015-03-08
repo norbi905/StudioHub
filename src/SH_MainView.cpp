@@ -8,10 +8,10 @@ SH_MainView
 Constructor
 */
 SH_MainView::SH_MainView(QWidget *parent)
-	: QLabel(parent)
+	: QTextEdit(parent)
 {
 	this->setStyleSheet("background-color: white");
-	this->setText("Main View");
+	this->setReadOnly(true);
 }
 
 /*
@@ -20,4 +20,12 @@ Destructor
 SH_MainView::~SH_MainView()
 {
 
+}
+
+/*
+addMessage
+*/
+void SH_MainView::addMessage(QString message)
+{
+	this->setText(message + "\n");
 }

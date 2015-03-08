@@ -13,8 +13,10 @@ SH_MySqlConnector.h
 // forward declare class
 class SH_User;
 
-class SH_MySqlConnector
+class SH_MySqlConnector : QObject
 {
+	Q_OBJECT
+
 public:
 	SH_MySqlConnector();
 	~SH_MySqlConnector();
@@ -24,12 +26,15 @@ public:
 	QString			getDBError();
 	
 	bool			connectToDatabase(QString username, QString password);
+	QSqlTableModel	*getUserNameTable();
 
 private:
 	SH_User			*user;
 
 	// the database
 	QSqlDatabase	db;
+
+	QSqlTableModel	*userNameTable;
 	
 
 protected:

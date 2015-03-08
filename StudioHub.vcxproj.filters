@@ -194,6 +194,21 @@
     <ClCompile Include="GeneratedFiles\Release\moc_SH_CalendarView.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_SH_MySqlConnector.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_SH_MySqlConnector.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SH_UsersViewDetails.cpp">
+      <Filter>Source Files\Views</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_SH_UsersViewDetails.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_SH_UsersViewDetails.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="sh_mainwindow.ui">
@@ -241,11 +256,12 @@
     <CustomBuild Include="include\SH_CalendarView.h">
       <Filter>Header Files\Views</Filter>
     </CustomBuild>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="include\SH_MySqlConnector.h">
+    <CustomBuild Include="include\SH_MySqlConnector.h">
       <Filter>Header Files\MySQL</Filter>
-    </ClInclude>
+    </CustomBuild>
+    <CustomBuild Include="include\SH_UsersViewDetails.h">
+      <Filter>Header Files\Views</Filter>
+    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\StudioHubResources\Stylesheet\StudioHub.stylesheet">
