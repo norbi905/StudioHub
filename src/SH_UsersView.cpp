@@ -3,6 +3,7 @@ SH_UsersView
 */
 
 #include "include\SH_UsersView.h"
+#include "include\SH_UsersViewDetails.h"
 
 /*
 Constructor
@@ -10,7 +11,8 @@ Constructor
 SH_UsersView::SH_UsersView(QWidget *parent)
 	: QTreeView(parent)
 {
-
+	this->setSortingEnabled(true);
+	this->setSelectionBehavior(QAbstractItemView::SelectRows);
 }
 
 /*
@@ -26,6 +28,5 @@ setUserNameTableModel
 */
 void SH_UsersView::setUserNameTableModel(QSqlTableModel *model)
 {
-	//userNameTableModel = model;
 	this->setModel(model);
 }

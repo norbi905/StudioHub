@@ -102,6 +102,11 @@ protected:
 		void			mainToolBarProjectViewPressed();
 		void			mainToolBarUsersViewPressed();
 		void			mainToolBarCalendarViewPressed();
+		void			usersTreeClickedItem(QModelIndex index);
+
+	signals:
+		// needed to connect SH_UsersView with SH_UsersViewDisplay so that when a user clicks on a tree item the SH_UsersViewDisplay can act accordingly and display selected item
+		void usersTreeViewClickedItem(QModelIndex index);
 };
 
 #endif // SH_MAINWINDOW_H

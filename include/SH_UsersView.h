@@ -8,6 +8,8 @@ SH_UsersView
 #include <QtSql>
 #include "qtreeview.h"
 
+class SH_UsersViewDetails;
+
 class SH_UsersView : public QTreeView
 {
 	Q_OBJECT
@@ -17,12 +19,10 @@ public:
 	~SH_UsersView();
 
 	void	setUserNameTableModel(QSqlTableModel *model);
+	QString	getUserName();
 
 private:
-	QSqlTableModel	*userNameTableModel;
-
 protected:
-
 };
 
 #endif // SH_UsersView

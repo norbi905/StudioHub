@@ -50,10 +50,15 @@ SH_MainWindow::SH_MainWindow(QWidget *parent)
 	projectListView->hide();
 	mainView		= new SH_MainView(this);
 	mainView->hide();
-	usersView		= new SH_UsersView(this);
-	usersView->hide();
-	usersViewDetails = new SH_UsersViewDetails(this);
+	
+	
+	usersViewDetails = new SH_UsersViewDetails();
 	usersViewDetails->hide();
+	usersView = new SH_UsersView(usersViewDetails);
+	usersView->hide();
+
+	connect(usersView, SIGNAL(clicked(QModelIndex)), usersViewDetails, SLOT(usersTreeViewClickedItem(QModelIndex)));
+
 	calendarView	= new SH_CalendarView(this);
 	calendarView->hide();
 
@@ -197,7 +202,7 @@ void SH_MainWindow::initiateLogIn(QWidget *parent)
 			mainUser->setUsername(username);
 			mainUser->setAccess("S");
 
-			//set-up project list view
+			//set-up users list view
 			usersView->setUserNameTableModel(mySqlConnector->getUserNameTable());
 
 			mainUser->setLoggedIn(true);
@@ -294,4 +299,9 @@ void SH_MainWindow::mainToolBarCalendarViewPressed()
 
 	leftStackedLayout->setCurrentIndex(3);
 	usersViewDetails->hide();
+}
+
+void SH_MainWindow::usersTreeClickedItem(QModelIndex index)
+{
+	emit usersTreeViewClickedItem(index);
 }
