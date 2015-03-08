@@ -25,6 +25,8 @@
 #include "SH_MainView.h"
 #include "SH_UsersView.h"
 #include "SH_CalendarView.h"
+#include "SH_UsersViewDetails.h"
+
 
 // forward declare classes
 class SH_MainToolBar;
@@ -39,6 +41,7 @@ class SH_ProjectListView;
 class SH_MainView;
 class SH_UsersView;
 class SH_CalendarView;
+class SH_UsersViewDetails;
 
 class SH_MainWindow : public QWidget
 {
@@ -65,14 +68,16 @@ private:
 	SH_ProjectListView		*projectListView;
 	SH_MainView				*mainView;
 	SH_UsersView			*usersView;
+	SH_UsersViewDetails		*usersViewDetails;
 	SH_CalendarView			*calendarView;
 
 	SH_LogInDialog		*logInDialogWindow;
 	SH_User				*mainUser;
+
 	SH_MySqlConnector	*mySqlConnector;
 
-	QStackedLayout		*stackedLayout;
-	QVBoxLayout			*mainLayout;
+	QStackedLayout		*leftStackedLayout;
+	QGridLayout			*mainLayout;
 
 	QAction				*contextQuitAction;
 	

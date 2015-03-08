@@ -5,10 +5,10 @@ SH_UsersView
 #ifndef SH_USERSVIEW_H
 #define SH_USERSVIEW_H
 
-#include "qtableview.h"
-#include "sh_mainwindow.h"
+#include <QtSql>
+#include "qtreeview.h"
 
-class SH_UsersView : public QTableView
+class SH_UsersView : public QTreeView
 {
 	Q_OBJECT
 
@@ -16,7 +16,10 @@ public:
 	SH_UsersView(QWidget *parent = 0);
 	~SH_UsersView();
 
+	void	setUserNameTableModel(QSqlTableModel *model);
+
 private:
+	QSqlTableModel	*userNameTableModel;
 
 protected:
 

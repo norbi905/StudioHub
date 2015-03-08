@@ -5,10 +5,10 @@ SH_ProjectListView
 #ifndef SH_PROJECTLISTVIEW_H
 #define SH_PROJECTLISTVIEW_H
 
-#include "qtableview.h"
+#include <qtreeview.h>
 #include "sh_mainwindow.h"
 
-class SH_ProjectListView : public QTableView
+class SH_ProjectListView : public QTreeView
 {
 	Q_OBJECT
 

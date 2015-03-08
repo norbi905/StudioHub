@@ -61,7 +61,7 @@ void SH_ProjectListView::qt_static_metacall(QObject *_o, QMetaObject::Call _c, i
 }
 
 const QMetaObject SH_ProjectListView::staticMetaObject = {
-    { &QTableView::staticMetaObject, qt_meta_stringdata_SH_ProjectListView.data,
+    { &QTreeView::staticMetaObject, qt_meta_stringdata_SH_ProjectListView.data,
       qt_meta_data_SH_ProjectListView,  qt_static_metacall, Q_NULLPTR, Q_NULLPTR}
 };
 
@@ -76,12 +76,12 @@ void *SH_ProjectListView::qt_metacast(const char *_clname)
     if (!_clname) return Q_NULLPTR;
     if (!strcmp(_clname, qt_meta_stringdata_SH_ProjectListView.stringdata))
         return static_cast<void*>(const_cast< SH_ProjectListView*>(this));
-    return QTableView::qt_metacast(_clname);
+    return QTreeView::qt_metacast(_clname);
 }
 
 int SH_ProjectListView::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 {
-    _id = QTableView::qt_metacall(_c, _id, _a);
+    _id = QTreeView::qt_metacall(_c, _id, _a);
     if (_id < 0)
         return _id;
     return _id;

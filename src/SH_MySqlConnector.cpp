@@ -8,8 +8,9 @@ SH_MySqlConnector.cpp
 Constructor
 */
 SH_MySqlConnector::SH_MySqlConnector()
+	: QObject()
 {
-
+	userNameTable = NULL;
 }
 
 /*
@@ -36,7 +37,7 @@ bool SH_MySqlConnector::connectToDatabase(QString username, QString password)
 		QSqlError error;
 		error = db.lastError();
 		dbError.append(error.text());
-		return true;
+		return false;
 	}
 
 	return true;
@@ -48,4 +49,20 @@ getDBError
 QString SH_MySqlConnector::getDBError()
 {
 	return dbError;
+}
+
+/*
+getUserNameTable
+*/
+QSqlTableModel *SH_MySqlConnector::getUserNameTable()
+{
+	if (userNameTable == NULL)
+	{
+		userNameTable = new QSqlTableModel(this, db);
+		userNameTable->setTable("users");
+		userNameTable->select();
+
+	}
+
+	return userNameTable;
 }
