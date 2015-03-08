@@ -1,8 +1,6 @@
 #ifndef SH_USERSVIEWDETAILS_H
 #define SH_USERSVIEWDETAILS_H
 
-//class SH_UsersView;
-#include "SH_UsersView.h"
 #include "sh_mainwindow.h"
 
 class SH_UsersViewDetails : public SH_UsersView
@@ -15,12 +13,20 @@ public:
 
 private:
 	QVBoxLayout	*usersViewDetailsLayout;
+	QGridLayout	*userProfileLayout;
+	QGridLayout	*placeholder1Layout;
+	QGridLayout	*placeholder2Layout;
 
 	QGroupBox	*userProfile;
 	QGroupBox	*placeholder1;
 	QGroupBox	*placeholder2;
 
+	QLabel		*userName;
+	QLabel		*access;
+
 protected:
+	private slots:
+		void	usersTreeViewClickedItem(QModelIndex index);
 };
 
 #endif

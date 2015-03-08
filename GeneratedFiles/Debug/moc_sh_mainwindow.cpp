@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_SH_MainWindow_t {
-    QByteArrayData data[8];
-    char stringdata[167];
+    QByteArrayData data[11];
+    char stringdata[219];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -30,20 +30,25 @@ struct qt_meta_stringdata_SH_MainWindow_t {
 static const qt_meta_stringdata_SH_MainWindow_t qt_meta_stringdata_SH_MainWindow = {
     {
 QT_MOC_LITERAL(0, 0, 13), // "SH_MainWindow"
-QT_MOC_LITERAL(1, 14, 15), // "quitApplication"
-QT_MOC_LITERAL(2, 30, 0), // ""
-QT_MOC_LITERAL(3, 31, 19), // "userRequestedLogOff"
-QT_MOC_LITERAL(4, 51, 26), // "mainToolBarMainViewPressed"
-QT_MOC_LITERAL(5, 78, 29), // "mainToolBarProjectViewPressed"
-QT_MOC_LITERAL(6, 108, 27), // "mainToolBarUsersViewPressed"
-QT_MOC_LITERAL(7, 136, 30) // "mainToolBarCalendarViewPressed"
+QT_MOC_LITERAL(1, 14, 24), // "usersTreeViewClickedItem"
+QT_MOC_LITERAL(2, 39, 0), // ""
+QT_MOC_LITERAL(3, 40, 5), // "index"
+QT_MOC_LITERAL(4, 46, 15), // "quitApplication"
+QT_MOC_LITERAL(5, 62, 19), // "userRequestedLogOff"
+QT_MOC_LITERAL(6, 82, 26), // "mainToolBarMainViewPressed"
+QT_MOC_LITERAL(7, 109, 29), // "mainToolBarProjectViewPressed"
+QT_MOC_LITERAL(8, 139, 27), // "mainToolBarUsersViewPressed"
+QT_MOC_LITERAL(9, 167, 30), // "mainToolBarCalendarViewPressed"
+QT_MOC_LITERAL(10, 198, 20) // "usersTreeClickedItem"
 
     },
-    "SH_MainWindow\0quitApplication\0\0"
-    "userRequestedLogOff\0mainToolBarMainViewPressed\0"
+    "SH_MainWindow\0usersTreeViewClickedItem\0"
+    "\0index\0quitApplication\0userRequestedLogOff\0"
+    "mainToolBarMainViewPressed\0"
     "mainToolBarProjectViewPressed\0"
     "mainToolBarUsersViewPressed\0"
-    "mainToolBarCalendarViewPressed"
+    "mainToolBarCalendarViewPressed\0"
+    "usersTreeClickedItem"
 };
 #undef QT_MOC_LITERAL
 
@@ -53,20 +58,27 @@ static const uint qt_meta_data_SH_MainWindow[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-       6,   14, // methods
+       8,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
-       0,       // signalCount
+       1,       // signalCount
+
+ // signals: name, argc, parameters, tag, flags
+       1,    1,   54,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,   44,    2, 0x08 /* Private */,
-       3,    0,   45,    2, 0x08 /* Private */,
-       4,    0,   46,    2, 0x08 /* Private */,
-       5,    0,   47,    2, 0x08 /* Private */,
-       6,    0,   48,    2, 0x08 /* Private */,
-       7,    0,   49,    2, 0x08 /* Private */,
+       4,    0,   57,    2, 0x08 /* Private */,
+       5,    0,   58,    2, 0x08 /* Private */,
+       6,    0,   59,    2, 0x08 /* Private */,
+       7,    0,   60,    2, 0x08 /* Private */,
+       8,    0,   61,    2, 0x08 /* Private */,
+       9,    0,   62,    2, 0x08 /* Private */,
+      10,    1,   63,    2, 0x08 /* Private */,
+
+ // signals: parameters
+    QMetaType::Void, QMetaType::QModelIndex,    3,
 
  // slots: parameters
     QMetaType::Void,
@@ -75,6 +87,7 @@ static const uint qt_meta_data_SH_MainWindow[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
+    QMetaType::Void, QMetaType::QModelIndex,    3,
 
        0        // eod
 };
@@ -84,16 +97,26 @@ void SH_MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _i
     if (_c == QMetaObject::InvokeMetaMethod) {
         SH_MainWindow *_t = static_cast<SH_MainWindow *>(_o);
         switch (_id) {
-        case 0: _t->quitApplication(); break;
-        case 1: _t->userRequestedLogOff(); break;
-        case 2: _t->mainToolBarMainViewPressed(); break;
-        case 3: _t->mainToolBarProjectViewPressed(); break;
-        case 4: _t->mainToolBarUsersViewPressed(); break;
-        case 5: _t->mainToolBarCalendarViewPressed(); break;
+        case 0: _t->usersTreeViewClickedItem((*reinterpret_cast< QModelIndex(*)>(_a[1]))); break;
+        case 1: _t->quitApplication(); break;
+        case 2: _t->userRequestedLogOff(); break;
+        case 3: _t->mainToolBarMainViewPressed(); break;
+        case 4: _t->mainToolBarProjectViewPressed(); break;
+        case 5: _t->mainToolBarUsersViewPressed(); break;
+        case 6: _t->mainToolBarCalendarViewPressed(); break;
+        case 7: _t->usersTreeClickedItem((*reinterpret_cast< QModelIndex(*)>(_a[1]))); break;
         default: ;
         }
+    } else if (_c == QMetaObject::IndexOfMethod) {
+        int *result = reinterpret_cast<int *>(_a[0]);
+        void **func = reinterpret_cast<void **>(_a[1]);
+        {
+            typedef void (SH_MainWindow::*_t)(QModelIndex );
+            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&SH_MainWindow::usersTreeViewClickedItem)) {
+                *result = 0;
+            }
+        }
     }
-    Q_UNUSED(_a);
 }
 
 const QMetaObject SH_MainWindow::staticMetaObject = {
@@ -121,14 +144,21 @@ int SH_MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 6)
+        if (_id < 8)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 6;
+        _id -= 8;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 6)
+        if (_id < 8)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 6;
+        _id -= 8;
     }
     return _id;
+}
+
+// SIGNAL 0
+void SH_MainWindow::usersTreeViewClickedItem(QModelIndex _t1)
+{
+    void *_a[] = { Q_NULLPTR, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
+    QMetaObject::activate(this, &staticMetaObject, 0, _a);
 }
 QT_END_MOC_NAMESPACE
