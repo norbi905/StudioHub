@@ -61,7 +61,6 @@ QSqlTableModel *SH_MySqlConnector::getUserNameTable()
 		userNameTable = new QSqlTableModel(this, db);
 		userNameTable->setTable("users");
 		userNameTable->select();
-
 	}
 
 	return userNameTable;

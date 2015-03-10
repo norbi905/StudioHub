@@ -2,6 +2,7 @@
 #define SH_USERSVIEWDETAILS_H
 
 #include "sh_mainwindow.h"
+#include "qdebug.h"
 
 class SH_UsersViewDetails : public SH_UsersView
 {
@@ -21,8 +22,8 @@ private:
 	QGroupBox	*placeholder1;
 	QGroupBox	*placeholder2;
 
+	QPushButton	*userProfileIcon;
 	QLabel		*userName;
-	QLabel		*access;
 
 protected:
 	private slots:
