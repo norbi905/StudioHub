@@ -3,6 +3,11 @@
 SH_UsersViewDetails::SH_UsersViewDetails(QWidget *parent)
 	: SH_UsersView(parent)
 {
+	userProfileIcon = new QPushButton(QIcon("../StudioHubResources/ProfilePic/DefaultProfilePic.png"),"");
+	userProfileIcon->setFixedSize(32, 32);
+	userProfileIcon->setIconSize(QSize(32, 32));
+	userProfileIcon->setEnabled(false);
+
 	usersViewDetailsLayout = new QVBoxLayout(this);
 	userProfileLayout = new QGridLayout(this);
 
@@ -18,12 +23,10 @@ SH_UsersViewDetails::SH_UsersViewDetails(QWidget *parent)
 	usersViewDetailsLayout->addWidget(placeholder2);
 
 	userName = new QLabel("User: " );
-	access = new QLabel("Access: ");
 	
-	userProfileLayout->addWidget(userName, 0, 0);
-	userProfileLayout->addWidget(access, 1, 0);
+	userProfileLayout->addWidget(userProfileIcon,0,0);
+	userProfileLayout->addWidget(userName, 0, 1);
 	userProfile->setLayout(userProfileLayout);
-	
 }
 
 SH_UsersViewDetails::~SH_UsersViewDetails()
@@ -35,8 +38,5 @@ SH_UsersViewDetails::~SH_UsersViewDetails()
 
 void SH_UsersViewDetails::usersTreeViewClickedItem(QModelIndex index)
 {
-	//int row = index.row();
-	userName->setText("User: " + index.data(Qt::DisplayRole).toString());
-	//access->setText("Access: " + index.row.data()
-	//access->setText("Access: " + index.data.row());
+	userName->setText(index.data(Qt::DisplayRole).toString() + "\n" + index.model()->data(index.model()->index(index.row(), 1)).toString());
 }
