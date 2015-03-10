@@ -13,6 +13,8 @@ SH_UsersView::SH_UsersView(QWidget *parent)
 {
 	this->setSortingEnabled(true);
 	this->setAlternatingRowColors(true);
+	
+	//addNewUserWindow = NULL;
 }
 
 /*
@@ -35,4 +37,15 @@ void SH_UsersView::setUserNameTableModel(QSqlTableModel *model)
 	// for some reason, not sure why....when a user logs-off and another logs in, the treeview does not display the table properly...a quick hack by changing sorting order it appears to be displaying it fine
 	this->sortByColumn(0, Qt::DescendingOrder);
 	this->sortByColumn(0, Qt::AscendingOrder);
+}
+
+void SH_UsersView::addUserClicked()
+{
+	addNewUserWindow = new SH_NewUserWindow(this);
+	int result = addNewUserWindow->exec();
+}
+
+void SH_UsersView::removeUserClicked()
+{
+	exit(0);
 }

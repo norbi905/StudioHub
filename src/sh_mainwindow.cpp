@@ -56,11 +56,18 @@ SH_MainWindow::SH_MainWindow(QWidget *parent)
 	usersViewDetails->hide();
 	usersView = new SH_UsersView(usersViewDetails);
 	usersView->hide();
-
-	connect(usersView, SIGNAL(clicked(QModelIndex)), usersViewDetails, SLOT(usersTreeViewClickedItem(QModelIndex)));
-
 	calendarView	= new SH_CalendarView(this);
 	calendarView->hide();
+	
+	
+	// connection so when user selects a user from treeview the usersviewdetails updates based on who is selected
+	connect(usersView, SIGNAL(clicked(QModelIndex)), usersViewDetails, SLOT(usersTreeViewClickedItem(QModelIndex)));
+
+	
+
+	// make connections for usersViewToolBar with userView class
+	connect(usersViewToolBar, SIGNAL(userViewAddUserClicked()), usersView, SLOT(addUserClicked()));
+	connect(usersViewToolBar, SIGNAL(userViewRemoveUserClicked()), usersView, SLOT(removeUserClicked()));
 
 	//ui.setupUi(this);
 	//this->show();

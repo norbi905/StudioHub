@@ -6,6 +6,7 @@ SH_UsersViewToolBar
 #define SH_USERSVIEWTOOLBAR_H
 
 #include "qpushbutton.h"
+#include "qicon.h"
 
 #include "include\SH_mainwindow.h"
 
@@ -21,13 +22,21 @@ public:
 	~SH_UsersViewToolBar();
 
 private:
-	QPushButton		*buttonOne;
-	QPushButton		*buttonTwo;
+	QIcon			*addUserIcon;
+	QIcon			*removeUserIcon;
+
+	QPushButton		*addUser;
+	QPushButton		*removeUser;
 	QPushButton		*buttonThree;
 
 
 protected:
+signals :
+		void userViewAddUserClicked();
+		void userViewRemoveUserClicked();
 	private slots :
 		void	mainToolBarUsersViewPressed();
+		void	addUserClicked();
+		void	removeUserClicked();
 };
 #endif // SH_UsersViewToolBar
