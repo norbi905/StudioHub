@@ -8,6 +8,8 @@ SH_UsersView
 #include <QtSql>
 #include "qtreeview.h"
 
+#include "SH_NewUserWindow.h"
+
 class SH_UsersViewDetails;
 
 class SH_UsersView : public QTreeView
@@ -22,7 +24,11 @@ public:
 	QString	getUserName();
 
 private:
+	SH_NewUserWindow	*addNewUserWindow;
 protected:
+	private slots :
+	void addUserClicked();
+	void removeUserClicked();
 };
 
 #endif // SH_UsersView

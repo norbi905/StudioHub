@@ -209,6 +209,15 @@
     <ClCompile Include="GeneratedFiles\Release\moc_SH_UsersViewDetails.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="src\SH_NewUserWindow.cpp">
+      <Filter>Source Files\Views</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_SH_NewUserWindow.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_SH_NewUserWindow.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="sh_mainwindow.ui">
@@ -260,6 +269,9 @@
       <Filter>Header Files\MySQL</Filter>
     </CustomBuild>
     <CustomBuild Include="include\SH_UsersViewDetails.h">
+      <Filter>Header Files\Views</Filter>
+    </CustomBuild>
+    <CustomBuild Include="include\SH_NewUserWindow.h">
       <Filter>Header Files\Views</Filter>
     </CustomBuild>
   </ItemGroup>
