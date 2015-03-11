@@ -58,7 +58,10 @@ SH_MainWindow::SH_MainWindow(QWidget *parent)
 	usersView->hide();
 	calendarView	= new SH_CalendarView(this);
 	calendarView->hide();
-	
+
+	usersViewSplitter = new QSplitter(this);
+	usersViewSplitter->addWidget(usersView);
+	usersViewSplitter->addWidget(usersViewDetails);
 	
 	// connection so when user selects a user from treeview the usersviewdetails updates based on who is selected
 	connect(usersView, SIGNAL(clicked(QModelIndex)), usersViewDetails, SLOT(usersTreeViewClickedItem(QModelIndex)));
@@ -78,11 +81,13 @@ SH_MainWindow::SH_MainWindow(QWidget *parent)
 	mainLayout->addWidget(usersViewToolBar, 1, 0);
 	mainLayout->addWidget(calendarViewToolBar, 1, 0);
 
-	mainLayout->addWidget(usersViewDetails, 2, 1);
+	//mainLayout->addWidget(usersViewDetails, 2, 1);
+	mainLayout->addWidget(usersViewSplitter);
 
 	leftStackedLayout->addWidget(mainView);
 	leftStackedLayout->addWidget(projectListView);
-	leftStackedLayout->addWidget(usersView);
+	//leftStackedLayout->addWidget(usersView);
+	leftStackedLayout->addWidget(usersViewSplitter);
 	leftStackedLayout->addWidget(calendarView);
 
 	mainLayout->addLayout(leftStackedLayout, 2, 0);
@@ -291,6 +296,8 @@ void SH_MainWindow::mainToolBarUsersViewPressed()
 	calendarViewToolBar->hide();
 
 	leftStackedLayout->setCurrentIndex(2);
+	usersViewSplitter->show();
+	usersView->show();
 	usersViewDetails->show();
 }
 

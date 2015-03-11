@@ -11,6 +11,7 @@
 #include <qmenu.h>
 #include <qtoolbar.h>
 #include <qstackedlayout.h>
+#include "qsplitter.h"
 //#include "ui_sh_mainwindow.h"
 
 #include "SH_MainToolBar.h"
@@ -78,6 +79,9 @@ private:
 
 	QStackedLayout		*leftStackedLayout;
 	QGridLayout			*mainLayout;
+
+	// split the users view 2 qwidets so it's resizable
+	QSplitter			*usersViewSplitter;
 
 	QAction				*contextQuitAction;
 	
