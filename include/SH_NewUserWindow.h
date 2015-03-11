@@ -10,6 +10,7 @@ SH_NewUserWindow_h
 #include <QGridLayout>
 #include <qscrollarea.h>
 #include <qlineedit.h>
+#include "qgroupbox.h"
 
 class SH_NewUserWindow : public QDialog
 {
@@ -22,6 +23,15 @@ public:
 private:
 	QVBoxLayout	*mainLayout;
 	QScrollArea	*mainScrollArea;
+	QWidget		*placeholderWidget;
+	QGridLayout *newLayout;
+
+	// group box layouts
+	QGridLayout	*userInfoBoxLayout;
+	QGridLayout	*tempBoxLayout;
+	QGridLayout	*temp2BoxLayout;
+	QGridLayout	*temp3BoxLayout;
+	QGridLayout	*temp4BoxLayout;
 
 	QLineEdit		*username;
 	QLineEdit		*password;
@@ -31,6 +41,12 @@ private:
 	QLineEdit		*temp2;
 	QLineEdit		*temp3;
 	QLineEdit		*temp4;
+
+	QGroupBox		*userInfoBox;
+	QGroupBox		*tempBox;
+	QGroupBox		*temp2Box;
+	QGroupBox		*temp3Box;
+	QGroupBox		*temp4Box;
 	
 
 protected:

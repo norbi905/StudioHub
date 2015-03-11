@@ -10,22 +10,26 @@ Constructor
 SH_NewUserWindow::SH_NewUserWindow(QWidget *parent, Qt::WindowFlags)
 	: QDialog(parent)
 {
-	//setWindowFlags(Qt::Dialog);
+	setWindowFlags(Qt::Tool);
 
-	mainLayout = new QVBoxLayout(this);
-	mainScrollArea = new QScrollArea(this);
-	mainLayout->addWidget(mainScrollArea);
-	
+	mainLayout			= new QVBoxLayout(parent);
+	mainScrollArea		= new QScrollArea(parent);
+	placeholderWidget	= new QWidget(mainScrollArea);
+	newLayout			= new QGridLayout(mainScrollArea);
 
-	//// create text edit fields
-	username = new QLineEdit(this);
-	password = new QLineEdit(this);
-	access = new QLineEdit(this);
-	title = new QLineEdit(this);
-	temp = new QLineEdit(this);
-	temp2 = new QLineEdit(this);
-	temp3 = new QLineEdit(this);
-	temp4 = new QLineEdit(this);
+	// need this so that whatever we place inside the scroll area will be resize when user resizes main window
+	mainScrollArea->setWidgetResizable(true);
+
+
+	// create text edit fields
+	username	= new QLineEdit();
+	password	= new QLineEdit();
+	access		= new QLineEdit();
+	title		= new QLineEdit();
+	temp		= new QLineEdit();
+	temp2		= new QLineEdit();
+	temp3		= new QLineEdit();
+	temp4		= new QLineEdit();
 
 	username->setPlaceholderText("username");
 	password->setPlaceholderText("password");
@@ -36,46 +40,51 @@ SH_NewUserWindow::SH_NewUserWindow(QWidget *parent, Qt::WindowFlags)
 	temp3->setPlaceholderText("temp3");
 	temp4->setPlaceholderText("temp4");
 
-	QGridLayout *newLayout = new QGridLayout();
+	// create group boxes
+	userInfoBox = new QGroupBox("User Info", mainScrollArea);
+	tempBox		= new QGroupBox("Temp" );
+	temp2Box	= new QGroupBox("Temp 2" );
+	temp3Box	= new QGroupBox("Temp 3" );
+	temp4Box	= new QGroupBox("Temp4");
 
+	// create group box layouts
+	userInfoBoxLayout	= new QGridLayout();
+	tempBoxLayout		= new QGridLayout();
+	temp2BoxLayout		= new QGridLayout();
+	temp3BoxLayout		= new QGridLayout();
+	temp4BoxLayout		= new QGridLayout();
 
+	userInfoBoxLayout->addWidget(username);
+	userInfoBoxLayout->addWidget(password);
+	userInfoBoxLayout->addWidget(access);
+	userInfoBoxLayout->addWidget(title);
+	userInfoBox->setLayout(userInfoBoxLayout);
 
-////mainLayout->addWidget(mainScrollArea);
-	newLayout->addWidget(username);
-	newLayout->addWidget(password);
-	newLayout->addWidget(access);
-	newLayout->addWidget(title);
-	newLayout->addWidget(temp);
-	newLayout->addWidget(temp2);
-	newLayout->addWidget(temp3);
-	newLayout->addWidget(temp4);
+	tempBoxLayout->addWidget(temp);
+	tempBox->setLayout(tempBoxLayout);
 
-	setLayout(newLayout);
-	mainScrollArea->setWidget(parent);
+	temp2BoxLayout->addWidget(temp2);
+	temp2Box->setLayout(temp2BoxLayout);
 
-//mainScrollArea->setWidget(username);
-//	mainScrollArea->setWidget(password);
-//	mainScrollArea->setWidget(access);
-//	mainScrollArea->setWidget(title);
-//	mainScrollArea->setWidget(temp);
-//	mainScrollArea->setWidget(temp2);
-//	mainScrollArea->setWidget(temp3);
-//	mainScrollArea->setWidget(temp4);
+	temp3BoxLayout->addWidget(temp3);
+	temp3Box->setLayout(temp3BoxLayout);
 
-//
-//username->setLayout(mainLayout);
-//password->setLayout(mainLayout);
-//access->setLayout(mainLayout);
-//title->setLayout(mainLayout);
-//temp->setLayout(mainLayout);
-//temp2->setLayout(mainLayout);
-//temp3->setLayout(mainLayout);
-//temp4->setLayout(mainLayout);
-	
-	
-	//setLayout(mainLayout);
-	
-	//mainScrollArea->show();
+	temp4BoxLayout->addWidget(temp4);
+	temp4Box->setLayout(temp4BoxLayout);
+
+	newLayout->addWidget(userInfoBox);
+	newLayout->addWidget(tempBox);
+	newLayout->addWidget(temp2Box);
+	newLayout->addWidget(temp3Box);
+	newLayout->addWidget(temp4Box);
+
+	placeholderWidget->setLayout(newLayout);
+	mainScrollArea->setWidget(placeholderWidget);
+
+	mainLayout->addWidget(mainScrollArea);
+
+	setLayout(mainLayout);
+
 }
 
 /*
