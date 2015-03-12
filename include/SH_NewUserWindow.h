@@ -11,6 +11,9 @@ SH_NewUserWindow_h
 #include <qscrollarea.h>
 #include <qlineedit.h>
 #include "qgroupbox.h"
+#include "qlabel.h"
+#include "qcombobox.h"
+#include "qpushbutton.h"
 
 class SH_NewUserWindow : public QDialog
 {
@@ -26,27 +29,21 @@ private:
 	QWidget		*placeholderWidget;
 	QGridLayout *newLayout;
 
-	// group box layouts
-	QGridLayout	*userInfoBoxLayout;
-	QGridLayout	*tempBoxLayout;
-	QGridLayout	*temp2BoxLayout;
-	QGridLayout	*temp3BoxLayout;
-	QGridLayout	*temp4BoxLayout;
-
-	QLineEdit		*username;
-	QLineEdit		*password;
-	QLineEdit		*access;
-	QLineEdit		*title;
-	QLineEdit		*temp;
-	QLineEdit		*temp2;
-	QLineEdit		*temp3;
-	QLineEdit		*temp4;
-
+	// user info BOX section
+	QGridLayout	*userInfoBoxLayout;	
 	QGroupBox		*userInfoBox;
-	QGroupBox		*tempBox;
-	QGroupBox		*temp2Box;
-	QGroupBox		*temp3Box;
-	QGroupBox		*temp4Box;
+	QLabel			*usernameLabel;
+	QLabel			*passwordLabel;
+	QLabel			*accessLabel;
+	QLabel			*titleLable;
+	QLineEdit		*usernameLineEdit;
+	QLineEdit		*passwordLineEdit;
+	QLineEdit		*titleLineEdit;
+	QComboBox		*accessComboBox;
+	// END user info BOX section
+
+	QPushButton		*addUserButton;
+	QPushButton		*cancelAddUserButton;
 	
 
 protected:
