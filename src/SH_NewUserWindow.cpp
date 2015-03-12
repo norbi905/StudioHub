@@ -11,80 +11,68 @@ SH_NewUserWindow::SH_NewUserWindow(QWidget *parent, Qt::WindowFlags)
 	: QDialog(parent)
 {
 	setWindowFlags(Qt::Tool);
+	setMinimumSize(400, 300);
 
 	mainLayout			= new QVBoxLayout(parent);
 	mainScrollArea		= new QScrollArea(parent);
 	placeholderWidget	= new QWidget(mainScrollArea);
 	newLayout			= new QGridLayout(mainScrollArea);
 
+	newLayout->setRowStretch(0, 1);
+
 	// need this so that whatever we place inside the scroll area will be resize when user resizes main window
 	mainScrollArea->setWidgetResizable(true);
 
 
-	// create text edit fields
-	username	= new QLineEdit();
-	password	= new QLineEdit();
-	access		= new QLineEdit();
-	title		= new QLineEdit();
-	temp		= new QLineEdit();
-	temp2		= new QLineEdit();
-	temp3		= new QLineEdit();
-	temp4		= new QLineEdit();
 
-	username->setPlaceholderText("username");
-	password->setPlaceholderText("password");
-	access->setPlaceholderText("access");
-	title->setPlaceholderText("title");
-	temp->setPlaceholderText("temp");
-	temp2->setPlaceholderText("temp2");
-	temp3->setPlaceholderText("temp3");
-	temp4->setPlaceholderText("temp4");
+	// create user info BOX section
+	usernameLabel		= new QLabel("Username ");
+	passwordLabel		= new QLabel("Password ");
+	titleLable			= new QLabel("Title ");
+	accessLabel			= new QLabel("Access ");
 
-	// create group boxes
+	usernameLineEdit	= new QLineEdit();
+	passwordLineEdit	= new QLineEdit();
+	titleLineEdit		= new QLineEdit();
+
+	usernameLineEdit->setPlaceholderText("username");
+	passwordLineEdit->setPlaceholderText("password");
+	titleLineEdit->setPlaceholderText("title");
+
+	accessComboBox		= new QComboBox();
+	accessComboBox->addItem("Administrator", 0);
+	accessComboBox->addItem("User", 1);
+	
 	userInfoBox = new QGroupBox("User Info", mainScrollArea);
-	tempBox		= new QGroupBox("Temp" );
-	temp2Box	= new QGroupBox("Temp 2" );
-	temp3Box	= new QGroupBox("Temp 3" );
-	temp4Box	= new QGroupBox("Temp4");
-
-	// create group box layouts
+	
 	userInfoBoxLayout	= new QGridLayout();
-	tempBoxLayout		= new QGridLayout();
-	temp2BoxLayout		= new QGridLayout();
-	temp3BoxLayout		= new QGridLayout();
-	temp4BoxLayout		= new QGridLayout();
 
-	userInfoBoxLayout->addWidget(username);
-	userInfoBoxLayout->addWidget(password);
-	userInfoBoxLayout->addWidget(access);
-	userInfoBoxLayout->addWidget(title);
+	userInfoBoxLayout->addWidget(usernameLabel,0,0);
+	userInfoBoxLayout->addWidget(passwordLabel,1,0);
+	userInfoBoxLayout->addWidget(titleLable,2,0);
+	userInfoBoxLayout->addWidget(accessLabel,3,0);
+	userInfoBoxLayout->addWidget(usernameLineEdit,0,1);
+	userInfoBoxLayout->addWidget(passwordLineEdit,1,1);
+	userInfoBoxLayout->addWidget(titleLineEdit,2,1);
+	userInfoBoxLayout->addWidget(accessComboBox,3,1);
+
 	userInfoBox->setLayout(userInfoBoxLayout);
+	// ------------ END user info BOX section
 
-	tempBoxLayout->addWidget(temp);
-	tempBox->setLayout(tempBoxLayout);
+	// create ADD/CANCEL buttons
+	addUserButton = new QPushButton("Add");
+	cancelAddUserButton = new QPushButton("Cancel");
 
-	temp2BoxLayout->addWidget(temp2);
-	temp2Box->setLayout(temp2BoxLayout);
-
-	temp3BoxLayout->addWidget(temp3);
-	temp3Box->setLayout(temp3BoxLayout);
-
-	temp4BoxLayout->addWidget(temp4);
-	temp4Box->setLayout(temp4BoxLayout);
-
-	newLayout->addWidget(userInfoBox);
-	newLayout->addWidget(tempBox);
-	newLayout->addWidget(temp2Box);
-	newLayout->addWidget(temp3Box);
-	newLayout->addWidget(temp4Box);
-
+	newLayout->addWidget(userInfoBox,0,0);
+	newLayout->addWidget(addUserButton,1,0);
+	newLayout->addWidget(cancelAddUserButton,1,1);
+	
 	placeholderWidget->setLayout(newLayout);
 	mainScrollArea->setWidget(placeholderWidget);
 
 	mainLayout->addWidget(mainScrollArea);
 
 	setLayout(mainLayout);
-
 }
 
 /*
