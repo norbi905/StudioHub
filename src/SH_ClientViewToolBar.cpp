@@ -20,6 +20,9 @@ SH_ClientViewToolBar::SH_ClientViewToolBar(SH_MainToolBar *mainToolBar, QWidget 
 
 	this->addWidget(addClientButton);
 	this->addWidget(removeClientButton);
+
+	connect(addClientButton, SIGNAL(clicked()), this, SLOT(addClientClicked()));
+	connect(removeClientButton, SIGNAL(clicked()), this, SLOT(removeClientClicked()));
 }
 
 /*
