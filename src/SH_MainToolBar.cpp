@@ -22,25 +22,23 @@ SH_MainToolBar::SH_MainToolBar(QWidget *parent)
 	this->setAllowedAreas(Qt::TopToolBarArea);
 
 	toolBarSpacer	= new QWidget(this);
-	mainView		= new QPushButton(this);
-	usersView		= new QPushButton(this);
-	projectView		= new QPushButton(this);
-	calendarView	= new QPushButton(this);
-
-	mainView->setText("MAIN");
-	usersView->setText("USER");
-	projectView->setText("PROJECT");
-	calendarView->setText("CALENDAR");
+	mainView		= new QPushButton("DASHBOARD", this);
+	usersView		= new QPushButton("USERS", this);
+	projectView		= new QPushButton("PROJECT", this);
+	calendarView	= new QPushButton("CALENDAR", this);
+	clientView		= new QPushButton("CLIENT", this);
 
 	mainView->setCheckable(true);
 	usersView->setCheckable(true);
 	projectView->setCheckable(true);
 	calendarView->setCheckable(true);
+	clientView->setCheckable(true);
 
 	mainView->setObjectName("mainViewButton");
 	usersView->setObjectName("usersViewButton");
 	projectView->setObjectName("projectViewButton");
 	calendarView->setObjectName("calendarViewButton");
+	clientView->setObjectName("clientViewButton");
 
 	// when the application starts, we want the mainView to be the first displayed therefore it's button to be highlighted
 	mainView->setChecked(true);
@@ -54,6 +52,7 @@ SH_MainToolBar::SH_MainToolBar(QWidget *parent)
 	pushButtonList.insert(2, usersView);
 	pushButtonList.insert(3, projectView);
 	pushButtonList.insert(4, calendarView);
+	pushButtonList.insert(5, clientView);
 }
 
 /*
@@ -66,6 +65,7 @@ SH_MainToolBar::~SH_MainToolBar()
 	delete userProfileButton;
 	delete usernameLabel;
 
+	delete clientView;
 	delete calendarView;
 	delete projectView;
 	delete usersView;
@@ -97,6 +97,7 @@ void SH_MainToolBar::createMenu()
 	this->addWidget(userProfileButton);
 	this->addWidget(usernameLabel);
 	this->addWidget(toolBarSpacer);
+	this->addWidget(clientView);
 	this->addWidget(calendarView);
 	this->addWidget(usersView);
 	this->addWidget(projectView);
@@ -121,6 +122,7 @@ void SH_MainToolBar::createActionsAndSignals()
 	connect(usersView, SIGNAL(released()), this, SLOT(userUsersViewRequested()));
 	connect(projectView, SIGNAL(released()), this, SLOT(userProjectViewRequested()));
 	connect(calendarView, SIGNAL(released()), this, SLOT(userCalendarViewRequested()));
+	connect(clientView, SIGNAL(released()), this,(SLOT(userClientViewRequested())));
 }
 
 /*
@@ -176,6 +178,15 @@ void SH_MainToolBar::userCalendarViewRequested()
 }
 
 /*
+userClientViewRequested
+*/
+void SH_MainToolBar::userClientViewRequested()
+{
+	setActiveToolBarButton(clientView);
+	emit clientViewPressed();
+}
+
+/*
 setActiveToolBarButton
 */
 void SH_MainToolBar::setActiveToolBarButton(QPushButton *activeButton)
@@ -201,4 +212,5 @@ void SH_MainToolBar::resetToolBarButtons()
 	usersView->setChecked(false);
 	projectView->setChecked(false);
 	calendarView->setChecked(false);
+	clientView->setChecked(false);
 }

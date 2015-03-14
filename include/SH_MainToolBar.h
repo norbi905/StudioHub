@@ -35,6 +35,7 @@ private:
 	QPushButton		*usersView;
 	QPushButton		*projectView;
 	QPushButton		*calendarView;
+	QPushButton		*clientView;
 	QList<QPushButton*> pushButtonList;
 	
 
@@ -53,6 +54,7 @@ private slots:
 	void			userUsersViewRequested();
 	void			userProjectViewRequested();
 	void			userCalendarViewRequested();
+	void			userClientViewRequested();
 
 signals :
 	void			logOffRequested();
@@ -61,6 +63,7 @@ signals :
 	void			usersViewPressed();
 	void			projectViewPressed();
 	void			calendarViewPressed();
+	void			clientViewPressed();
 
 protected:
 
