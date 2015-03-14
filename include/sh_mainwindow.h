@@ -27,6 +27,7 @@
 #include "SH_UsersView.h"
 #include "SH_CalendarView.h"
 #include "SH_UsersViewDetails.h"
+#include "SH_ProjectListViewDetails.h"
 
 
 // forward declare classes
@@ -39,6 +40,7 @@ class SH_LogInDialog;
 class SH_User;
 class SH_MySqlConnector;
 class SH_ProjectListView;
+class SH_ProjectListViewDetails;
 class SH_MainView;
 class SH_UsersView;
 class SH_CalendarView;
@@ -66,11 +68,12 @@ private:
 	SH_CalendarViewToolBar	*calendarViewToolBar;
 
 	//create views
-	SH_ProjectListView		*projectListView;
-	SH_MainView				*mainView;
-	SH_UsersView			*usersView;
-	SH_UsersViewDetails		*usersViewDetails;
-	SH_CalendarView			*calendarView;
+	SH_ProjectListView			*projectListView;
+	SH_ProjectListViewDetails	*projectListViewDetails;
+	SH_MainView					*mainView;
+	SH_UsersView				*usersView;
+	SH_UsersViewDetails			*usersViewDetails;
+	SH_CalendarView				*calendarView;
 
 	SH_LogInDialog		*logInDialogWindow;
 	SH_User				*mainUser;
@@ -80,8 +83,9 @@ private:
 	QStackedLayout		*leftStackedLayout;
 	QGridLayout			*mainLayout;
 
-	// split the users view 2 qwidets so it's resizable
+	// split the users/project view 2 qwidets so it's resizable
 	QSplitter			*usersViewSplitter;
+	QSplitter			*projectViewSplitter;
 
 	QAction				*contextQuitAction;
 	

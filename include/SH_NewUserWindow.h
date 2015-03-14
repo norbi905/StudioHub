@@ -35,7 +35,7 @@ private:
 	QGridLayout *newLayout;
 
 	// user info BOX section
-	QGridLayout	*userInfoBoxLayout;	
+	QGridLayout		*userInfoBoxLayout;	
 	QGroupBox		*userInfoBox;
 	QLabel			*usernameLabel;
 	QLabel			*passwordLabel;
