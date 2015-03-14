@@ -37,7 +37,7 @@ bool SH_MySqlConnector::connectToDatabase(QString username, QString password)
 		QSqlError error;
 		error = db.lastError();
 		dbError.append(error.text());
-		return true;
+		return false;
 	}
 
 	return true;

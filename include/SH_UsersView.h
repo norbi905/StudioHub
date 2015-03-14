@@ -7,6 +7,8 @@ SH_UsersView
 
 #include <QtSql>
 #include "qtreeview.h"
+#include "qaction.h"
+#include "qmessagebox.h"
 
 #include "SH_NewUserWindow.h"
 
@@ -23,12 +25,19 @@ public:
 	void	setUserNameTableModel(QSqlTableModel *model);
 	QString	getUserName();
 
+	// menu items for custom context menu when right clicking in this window
+	QAction	*contextAddUser;
+	QAction	*contextDeleteUser;
+
 private:
 	SH_NewUserWindow	*addNewUserWindow;
+
 protected:
 	private slots :
 	void addUserClicked();
 	void removeUserClicked();
+
+	void contextMenuEvent(QContextMenuEvent *event) Q_DECL_OVERRIDE;
 };
 
 #endif // SH_UsersView

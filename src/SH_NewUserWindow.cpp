@@ -73,6 +73,8 @@ SH_NewUserWindow::SH_NewUserWindow(QWidget *parent, Qt::WindowFlags)
 	mainLayout->addWidget(mainScrollArea);
 
 	setLayout(mainLayout);
+
+	createSignals();
 }
 
 /*
@@ -81,4 +83,37 @@ Destructor
 SH_NewUserWindow::~SH_NewUserWindow()
 {
 
+}
+
+/*
+createSignals
+*/
+void SH_NewUserWindow::createSignals()
+{
+	connect(addUserButton, SIGNAL(clicked()), this, SLOT(accept()));
+	connect(cancelAddUserButton, SIGNAL(clicked()), this, SLOT(reject()));
+}
+
+/*
+getUserName
+*/
+QString SH_NewUserWindow::getUserName()
+{
+	return usernameLineEdit->text();
+}
+
+/*
+getUserAccess
+*/
+QString SH_NewUserWindow::getUserAccess()
+{
+	return "NONE";
+}
+
+/*
+getUserPassword
+*/
+QString SH_NewUserWindow::getUserPassword()
+{
+	return passwordLineEdit->text();
 }

@@ -62,6 +62,9 @@ SH_MainWindow::SH_MainWindow(QWidget *parent)
 	usersViewSplitter = new QSplitter(this);
 	usersViewSplitter->addWidget(usersView);
 	usersViewSplitter->addWidget(usersViewDetails);
+	usersViewSplitter->setStretchFactor(0, 0.5);
+	usersViewSplitter->setStretchFactor(1, 3.5);
+
 	
 	// connection so when user selects a user from treeview the usersviewdetails updates based on who is selected
 	connect(usersView, SIGNAL(clicked(QModelIndex)), usersViewDetails, SLOT(usersTreeViewClickedItem(QModelIndex)));
