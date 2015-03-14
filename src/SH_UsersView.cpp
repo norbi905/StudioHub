@@ -47,7 +47,12 @@ void SH_UsersView::setUserNameTableModel(QSqlTableModel *model)
 {
 	this->setModel(model);
 	this->setColumnHidden(1, true);
-	this->setColumnHidden(2, true);	
+	this->setColumnHidden(2, true);
+	this->setColumnHidden(3, true);
+	this->setColumnHidden(4, true);
+	this->setColumnHidden(5, true);
+	this->setColumnHidden(6, true);
+	this->setColumnHidden(7, true);
 
 	// for some reason, not sure why....when a user logs-off and another logs in, the treeview does not display the table properly...a quick hack by changing sorting order it appears to be displaying it fine
 	this->sortByColumn(0, Qt::DescendingOrder);

@@ -15,15 +15,18 @@ public:
 private:
 	QVBoxLayout	*usersViewDetailsLayout;
 	QGridLayout	*userProfileLayout;
-	QGridLayout	*placeholder1Layout;
-	QGridLayout	*placeholder2Layout;
-
-	QGroupBox	*userProfile;
-	QGroupBox	*placeholder1;
-	QGroupBox	*placeholder2;
-
+	
+	QGroupBox	*userProfileBox;
+	
 	QPushButton	*userProfileIcon;
 	QLabel		*userName;
+	QLabel		*userAccess;
+	QLabel		*userPosition;
+	QLabel		*userSpecialties;
+	QLabel		*userOnline;
+	QLabel		*userStatus;
+	QLabel		*userPhone;
+	QLabel		*userEmail;
 
 protected:
 	private slots:
