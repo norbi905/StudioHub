@@ -46,8 +46,11 @@ SH_MainWindow::SH_MainWindow(QWidget *parent)
 	connect(mainToolBar, SIGNAL(calendarViewPressed()), leftStackedLayout, SLOT(mainToolBarCalendarViewPressed()));
 
 	// create view
-	projectListView = new SH_ProjectListView(this);
+	projectListViewDetails = new SH_ProjectListViewDetails();
+	projectListViewDetails->hide();
+	projectListView = new SH_ProjectListView(projectListViewDetails);
 	projectListView->hide();
+
 	mainView		= new SH_MainView(this);
 	mainView->hide();
 	
@@ -65,7 +68,12 @@ SH_MainWindow::SH_MainWindow(QWidget *parent)
 	usersViewSplitter->setStretchFactor(0, 0.5);
 	usersViewSplitter->setStretchFactor(1, 3.5);
 
-	
+	projectViewSplitter = new QSplitter(this);
+	projectViewSplitter->addWidget(projectListView);
+	projectViewSplitter->addWidget(projectListViewDetails);
+	projectViewSplitter->setStretchFactor(0, 0.5);
+	projectViewSplitter->setStretchFactor(1, 3.5);
+
 	// connection so when user selects a user from treeview the usersviewdetails updates based on who is selected
 	connect(usersView, SIGNAL(clicked(QModelIndex)), usersViewDetails, SLOT(usersTreeViewClickedItem(QModelIndex)));
 
@@ -86,10 +94,12 @@ SH_MainWindow::SH_MainWindow(QWidget *parent)
 
 	//mainLayout->addWidget(usersViewDetails, 2, 1);
 	mainLayout->addWidget(usersViewSplitter);
+	mainLayout->addWidget(projectViewSplitter);
 
 	leftStackedLayout->addWidget(mainView);
-	leftStackedLayout->addWidget(projectListView);
+	//leftStackedLayout->addWidget(projectListView);
 	//leftStackedLayout->addWidget(usersView);
+	leftStackedLayout->addWidget(projectViewSplitter);
 	leftStackedLayout->addWidget(usersViewSplitter);
 	leftStackedLayout->addWidget(calendarView);
 
@@ -252,6 +262,7 @@ void SH_MainWindow::userRequestedLogOff()
 
 	// get rid of all views
 	projectListView->hide();
+	projectListViewDetails->hide();
 	mainView->hide();
 	usersView->hide();
 	usersViewDetails->hide();
@@ -285,6 +296,10 @@ void SH_MainWindow::mainToolBarProjectViewPressed()
 	calendarViewToolBar->hide();
 
 	leftStackedLayout->setCurrentIndex(1);
+	projectViewSplitter->show();
+	projectListView->show();
+	projectListViewDetails->show();
+
 	usersViewDetails->hide();
 }
 
