@@ -32,14 +32,14 @@ static const qt_meta_stringdata_SH_ClientView_t qt_meta_stringdata_SH_ClientView
 QT_MOC_LITERAL(0, 0, 13), // "SH_ClientView"
 QT_MOC_LITERAL(1, 14, 16), // "addClientClicked"
 QT_MOC_LITERAL(2, 31, 0), // ""
-QT_MOC_LITERAL(3, 32, 19), // "deleteClientClicked"
+QT_MOC_LITERAL(3, 32, 19), // "removeClientClicked"
 QT_MOC_LITERAL(4, 52, 16), // "contextMenuEvent"
 QT_MOC_LITERAL(5, 69, 18), // "QContextMenuEvent*"
 QT_MOC_LITERAL(6, 88, 5) // "event"
 
     },
     "SH_ClientView\0addClientClicked\0\0"
-    "deleteClientClicked\0contextMenuEvent\0"
+    "removeClientClicked\0contextMenuEvent\0"
     "QContextMenuEvent*\0event"
 };
 #undef QT_MOC_LITERAL
@@ -76,7 +76,7 @@ void SH_ClientView::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _i
         SH_ClientView *_t = static_cast<SH_ClientView *>(_o);
         switch (_id) {
         case 0: _t->addClientClicked(); break;
-        case 1: _t->deleteClientClicked(); break;
+        case 1: _t->removeClientClicked(); break;
         case 2: _t->contextMenuEvent((*reinterpret_cast< QContextMenuEvent*(*)>(_a[1]))); break;
         default: ;
         }

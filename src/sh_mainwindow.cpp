@@ -99,6 +99,10 @@ SH_MainWindow::SH_MainWindow(QWidget *parent)
 	connect(projectViewToolBar, SIGNAL(projectViewAddProjectClicked()), projectListView, SLOT(addProjectClicked()));
 	connect(projectViewToolBar, SIGNAL(projectViewDeleteProjectClicked()), projectListView, SLOT(deleteProjectClicked()));
 
+	// make connection for clientViewToolBar with clientView class
+	connect(clientViewToolBar, SIGNAL(clientViewAddClientClicked()), clientView, SLOT(addClientClicked()));
+	connect(clientViewToolBar, SIGNAL(clientViewRemoveClientClicked()), clientView, SLOT(removeClientClicked()));
+
 	//ui.setupUi(this);
 	//this->show();
 	

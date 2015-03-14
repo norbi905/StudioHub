@@ -16,7 +16,7 @@ SH_ClientView::SH_ClientView(QWidget *parent)
 	contextDeleteClient = new QAction("Delete Client", this);
 
 	connect(contextAddClient, SIGNAL(triggered()), this, SLOT(addClientClicked()));
-	connect(contextDeleteClient, SIGNAL(triggered()), this, SLOT(deleteClientClicked()));
+	connect(contextDeleteClient, SIGNAL(triggered()), this, SLOT(removeClientClicked()));
 
 	clientWindow = new SH_NewClientWindow(this);
 	clientWindow->hide();
@@ -77,7 +77,7 @@ void SH_ClientView::addClientClicked()
 /*
 deleteClientClicked
 */
-void SH_ClientView::deleteClientClicked()
+void SH_ClientView::removeClientClicked()
 {
 	QMessageBox::StandardButton confirmation;
 	confirmation = QMessageBox::question(this, "Delete Client?", "Are you sure you want to delete " + this->currentIndex().data(Qt::DisplayRole).toString(), QMessageBox::Yes | QMessageBox::No);

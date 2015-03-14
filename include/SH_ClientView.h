@@ -33,7 +33,7 @@ private:
 protected:
 	private slots :
 		void addClientClicked();
-		void deleteClientClicked();
+		void removeClientClicked();
 		void contextMenuEvent(QContextMenuEvent *event) Q_DECL_OVERRIDE;
 };
 
