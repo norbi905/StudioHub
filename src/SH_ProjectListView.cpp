@@ -17,6 +17,9 @@ SH_ProjectListView::SH_ProjectListView(QWidget *parent)
 
 	connect(contextAddProject, SIGNAL(triggered()), this, SLOT(addProjectClicked()));
 	connect(contextDeleteProject, SIGNAL(triggered()), this, SLOT(deleteProjectClicked()));
+
+	addProjectWindow = new SH_NewProjectWindow(this);
+	addProjectWindow->hide();
 }
 
 /*
@@ -58,12 +61,15 @@ addProjectClicked
 */
 void SH_ProjectListView::addProjectClicked()
 {
-	addProjectWindow = new SH_NewProjectWindow(this);
+	addProjectWindow->show();
+	addProjectWindow->updateClientComboBox();
+
 	int result = addProjectWindow->exec();
 	if (result == QDialog::Accepted)
 	{
 		QSqlQuery query;
 		query.exec("INSERT INTO projects (name) VALUES ('" + addProjectWindow->getProjectName() + "')");
+		query.exec("UPDATE projects SET client = '" + addProjectWindow->getProjectClient() + "' WHERE name = '" + addProjectWindow->getProjectName() + "'");
 		this->sortByColumn(0, Qt::DescendingOrder);
 		this->sortByColumn(0, Qt::AscendingOrder);
 	}

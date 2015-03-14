@@ -230,12 +230,6 @@
     <ClCompile Include="src\SH_NewProjectWindow.cpp">
       <Filter>Source Files\Views</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_SH_NewProjectWindow.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_SH_NewProjectWindow.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
     <ClCompile Include="src\SH_ClientView.cpp">
       <Filter>Source Files\Views</Filter>
     </ClCompile>
@@ -262,6 +256,15 @@
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Release\moc_SH_ClientViewToolBar.cpp">
       <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_SH_NewProjectWindow.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_SH_NewProjectWindow.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SH_NewClientWindow.cpp">
+      <Filter>Source Files\Views</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -339,5 +342,10 @@
     <None Include="..\StudioHubResources\Stylesheet\StudioHub.stylesheet">
       <Filter>Resource Files</Filter>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\SH_NewClientWindow.h">
+      <Filter>Header Files\Views</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

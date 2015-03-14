@@ -24,6 +24,7 @@ public:
 	// string to store any errors that the mysql returns
 	QString			dbError;
 	QString			getDBError();
+	QSqlDatabase	getDatabase();
 	
 	bool			connectToDatabase(QString username, QString password);
 	QSqlTableModel	*getUserNameTable();
