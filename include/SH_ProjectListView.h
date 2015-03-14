@@ -5,10 +5,12 @@ SH_ProjectListView
 #ifndef SH_PROJECTLISTVIEW_H
 #define SH_PROJECTLISTVIEW_H
 
+#include <QtSql>
 #include <qtreeview.h>
 #include <qaction.h>
 #include <qmenu.h>
 #include <qevent.h>
+#include <qmessagebox.h>
 //#include "sh_mainwindow.h"
 #include "SH_NewProjectWindow.h"
 
@@ -19,6 +21,9 @@ class SH_ProjectListView : public QTreeView
 public:
 	SH_ProjectListView(QWidget *parent = 0);
 	~SH_ProjectListView();
+
+	// setup list view for projects
+	void setProjectListTableModel(QSqlTableModel *model);
 
 	// right click context menu
 	QAction	*contextAddProject;

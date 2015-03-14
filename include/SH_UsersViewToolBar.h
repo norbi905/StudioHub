@@ -34,7 +34,8 @@ protected:
 signals :
 		void userViewAddUserClicked();
 		void userViewRemoveUserClicked();
-	private slots :
+
+private slots :
 		void	mainToolBarUsersViewPressed();
 		void	addUserClicked();
 		void	removeUserClicked();
