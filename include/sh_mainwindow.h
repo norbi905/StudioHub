@@ -19,6 +19,7 @@
 #include "SH_ProjectViewToolBar.h"
 #include "SH_UsersViewToolBar.h"
 #include "SH_CalendarViewToolBar.h"
+#include "SH_ClientViewToolBar.h"
 #include "SH_LogInDialog.h"
 #include "SH_User.h"
 #include "SH_MySqlConnector.h"
@@ -28,6 +29,8 @@
 #include "SH_CalendarView.h"
 #include "SH_UsersViewDetails.h"
 #include "SH_ProjectListViewDetails.h"
+#include "SH_ClientView.h"
+#include "SH_ClientViewDetails.h"
 
 
 // forward declare classes
@@ -36,6 +39,7 @@ class SH_MainViewToolBar;
 class SH_ProjectViewToolBar;
 class SH_UsersViewToolBar;
 class SH_CalendarViewToolBar;
+class SH_ClientViewToolBar;
 class SH_LogInDialog;
 class SH_User;
 class SH_MySqlConnector;
@@ -45,6 +49,8 @@ class SH_MainView;
 class SH_UsersView;
 class SH_CalendarView;
 class SH_UsersViewDetails;
+class SH_ClientView;
+class SH_ClientViewDetails;
 
 class SH_MainWindow : public QWidget
 {
@@ -66,6 +72,7 @@ private:
 	SH_ProjectViewToolBar	*projectViewToolBar;
 	SH_UsersViewToolBar		*usersViewToolBar;
 	SH_CalendarViewToolBar	*calendarViewToolBar;
+	SH_ClientViewToolBar	*clientViewToolBar;
 
 	//create views
 	SH_ProjectListView			*projectListView;
@@ -74,6 +81,8 @@ private:
 	SH_UsersView				*usersView;
 	SH_UsersViewDetails			*usersViewDetails;
 	SH_CalendarView				*calendarView;
+	SH_ClientView				*clientView;
+	SH_ClientViewDetails		*clientViewDetails;
 
 	SH_LogInDialog		*logInDialogWindow;
 	SH_User				*mainUser;
@@ -83,9 +92,10 @@ private:
 	QStackedLayout		*leftStackedLayout;
 	QGridLayout			*mainLayout;
 
-	// split the users/project view 2 qwidets so it's resizable
+	// split the users/project/client view 2 qwidets so it's resizable
 	QSplitter			*usersViewSplitter;
 	QSplitter			*projectViewSplitter;
+	QSplitter			*clientViewSplitter;
 
 	QAction				*contextQuitAction;
 	
@@ -110,6 +120,7 @@ protected:
 		void			mainToolBarProjectViewPressed();
 		void			mainToolBarUsersViewPressed();
 		void			mainToolBarCalendarViewPressed();
+		void			mainToolBarClientViewPressed();
 		void			usersTreeClickedItem(QModelIndex index);
 
 	signals:

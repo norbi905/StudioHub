@@ -12,6 +12,7 @@ SH_MySqlConnector::SH_MySqlConnector()
 {
 	userNameTable	= NULL;
 	projectTable	= NULL;
+	clientTable		= NULL;
 }
 
 /*
@@ -79,4 +80,18 @@ QSqlTableModel *SH_MySqlConnector::getProjectTable()
 		projectTable->select();
 	}
 	return projectTable;
+}
+
+/*
+getClientTable
+*/
+QSqlTableModel *SH_MySqlConnector::getClientTable()
+{
+	if (clientTable == NULL);
+	{
+		clientTable = new QSqlTableModel(this, db);
+		clientTable->setTable("clients");
+		clientTable->select();
+	}
+	return clientTable;
 }

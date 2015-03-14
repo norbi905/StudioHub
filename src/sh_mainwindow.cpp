@@ -24,6 +24,7 @@ SH_MainWindow::SH_MainWindow(QWidget *parent)
 	projectViewToolBar	= new SH_ProjectViewToolBar(mainToolBar, this);
 	usersViewToolBar	= new SH_UsersViewToolBar(mainToolBar, this);
 	calendarViewToolBar = new SH_CalendarViewToolBar(mainToolBar, this);
+	clientViewToolBar	= new SH_ClientViewToolBar(mainToolBar, this);
 
 	logInDialogWindow	= new SH_LogInDialog(parent);
 	mainUser			= new SH_User();
@@ -39,11 +40,13 @@ SH_MainWindow::SH_MainWindow(QWidget *parent)
 	connect(mainToolBar, SIGNAL(projectViewPressed()), this, SLOT(mainToolBarProjectViewPressed()));
 	connect(mainToolBar, SIGNAL(usersViewPressed()), this, SLOT(mainToolBarUsersViewPressed()));
 	connect(mainToolBar, SIGNAL(calendarViewPressed()), this, SLOT(mainToolBarCalendarViewPressed()));
+	connect(mainToolBar, SIGNAL(clientViewPressed()), this, SLOT(mainToolBarClientViewPressed()));
 
 	connect(mainToolBar, SIGNAL(mainViewPressed()), leftStackedLayout, SLOT(mainToolBarMainViewPressed()));
 	connect(mainToolBar, SIGNAL(projectViewPressed()), leftStackedLayout, SLOT(mainToolBarProjectViewPressed()));
 	connect(mainToolBar, SIGNAL(usersViewPressed()), leftStackedLayout, SLOT(mainToolBarUsersViewPressed()));
 	connect(mainToolBar, SIGNAL(calendarViewPressed()), leftStackedLayout, SLOT(mainToolBarCalendarViewPressed()));
+	connect(mainToolBar, SIGNAL(clientViewPressed()), leftStackedLayout, SLOT(mainToolBarClientViewPressed()));
 
 	// create view
 	projectListViewDetails = new SH_ProjectListViewDetails();
@@ -62,6 +65,11 @@ SH_MainWindow::SH_MainWindow(QWidget *parent)
 	calendarView	= new SH_CalendarView(this);
 	calendarView->hide();
 
+	clientViewDetails = new SH_ClientViewDetails();
+	clientViewDetails->hide();
+	clientView = new SH_ClientView(clientViewDetails);
+	clientView->hide();
+
 	usersViewSplitter = new QSplitter(this);
 	usersViewSplitter->addWidget(usersView);
 	usersViewSplitter->addWidget(usersViewDetails);
@@ -73,6 +81,12 @@ SH_MainWindow::SH_MainWindow(QWidget *parent)
 	projectViewSplitter->addWidget(projectListViewDetails);
 	projectViewSplitter->setStretchFactor(0, 0.5);
 	projectViewSplitter->setStretchFactor(1, 3.5);
+
+	clientViewSplitter = new QSplitter(this);
+	clientViewSplitter->addWidget(clientView);
+	clientViewSplitter->addWidget(clientViewDetails);
+	clientViewSplitter->setStretchFactor(0, 0.5);
+	clientViewSplitter->setStretchFactor(1, 3.5);
 
 	// connection so when user selects a user from treeview the usersviewdetails updates based on who is selected
 	connect(usersView, SIGNAL(clicked(QModelIndex)), usersViewDetails, SLOT(usersTreeViewClickedItem(QModelIndex)));
@@ -94,10 +108,12 @@ SH_MainWindow::SH_MainWindow(QWidget *parent)
 	mainLayout->addWidget(projectViewToolBar,1, 0);
 	mainLayout->addWidget(usersViewToolBar, 1, 0);
 	mainLayout->addWidget(calendarViewToolBar, 1, 0);
+	mainLayout->addWidget(clientViewToolBar, 1, 0);
 
 	//mainLayout->addWidget(usersViewDetails, 2, 1);
 	mainLayout->addWidget(usersViewSplitter);
 	mainLayout->addWidget(projectViewSplitter);
+	mainLayout->addWidget(clientViewSplitter);
 
 	leftStackedLayout->addWidget(mainView);
 	//leftStackedLayout->addWidget(projectListView);
@@ -105,6 +121,7 @@ SH_MainWindow::SH_MainWindow(QWidget *parent)
 	leftStackedLayout->addWidget(projectViewSplitter);
 	leftStackedLayout->addWidget(usersViewSplitter);
 	leftStackedLayout->addWidget(calendarView);
+	leftStackedLayout->addWidget(clientViewSplitter);
 
 	mainLayout->addLayout(leftStackedLayout, 2, 0);
 	
@@ -126,6 +143,7 @@ SH_MainWindow::~SH_MainWindow()
 	delete projectViewToolBar;
 	delete usersViewToolBar;
 	delete calendarViewToolBar;
+	delete clientViewToolBar;
 
 	delete projectListView;
 	delete mainView;
@@ -178,6 +196,7 @@ void SH_MainWindow::displayApplication(QWidget *parent	)
 	projectViewToolBar->hide();
 	usersViewToolBar->hide();
 	calendarViewToolBar->hide();
+	clientViewToolBar->hide();
 	mainToolBar->show();
 	mainViewToolBar->show();
 
@@ -234,6 +253,8 @@ void SH_MainWindow::initiateLogIn(QWidget *parent)
 			usersView->setUserNameTableModel(mySqlConnector->getUserNameTable());
 			//set-up project list view
 			projectListView->setProjectListTableModel(mySqlConnector->getProjectTable());
+			//set-up client list view
+			clientView->setClientViewTableModel(mySqlConnector->getClientTable());
 
 			mainUser->setLoggedIn(true);
 
@@ -264,6 +285,7 @@ void SH_MainWindow::userRequestedLogOff()
 	projectViewToolBar->hide();
 	usersViewToolBar->hide();
 	calendarViewToolBar->hide();
+	clientViewToolBar->hide();
 
 	// get rid of all views
 	projectListView->hide();
@@ -272,6 +294,8 @@ void SH_MainWindow::userRequestedLogOff()
 	usersView->hide();
 	usersViewDetails->hide();
 	calendarView->hide();
+	clientView->hide();
+	clientViewDetails->hide();
 
 	initiateLogIn(this);
 }
@@ -285,6 +309,7 @@ void SH_MainWindow::mainToolBarMainViewPressed()
 	projectViewToolBar->hide();
 	usersViewToolBar->hide();
 	calendarViewToolBar->hide();
+	clientViewToolBar->hide();
 
 	leftStackedLayout->setCurrentIndex(0);
 	usersViewDetails->hide();
@@ -299,6 +324,7 @@ void SH_MainWindow::mainToolBarProjectViewPressed()
 	projectViewToolBar->show();
 	usersViewToolBar->hide();
 	calendarViewToolBar->hide();
+	clientViewToolBar->hide();
 
 	leftStackedLayout->setCurrentIndex(1);
 	projectViewSplitter->show();
@@ -317,6 +343,7 @@ void SH_MainWindow::mainToolBarUsersViewPressed()
 	projectViewToolBar->hide();
 	usersViewToolBar->show();
 	calendarViewToolBar->hide();
+	clientViewToolBar->hide();
 
 	leftStackedLayout->setCurrentIndex(2);
 	usersViewSplitter->show();
@@ -332,10 +359,32 @@ void SH_MainWindow::mainToolBarCalendarViewPressed()
 	mainViewToolBar->hide();
 	projectViewToolBar->hide();
 	usersViewToolBar ->hide();
+	clientViewToolBar->hide();
 	calendarViewToolBar->show();
 
 	leftStackedLayout->setCurrentIndex(3);
 	usersViewDetails->hide();
+	projectListViewDetails->hide();
+}
+
+/*
+mainToolBarClientViewPressed
+*/
+void SH_MainWindow::mainToolBarClientViewPressed()
+{
+	mainViewToolBar->hide();
+	projectViewToolBar->hide();
+	usersViewToolBar->hide();
+	calendarViewToolBar->hide();
+	clientViewToolBar->show();
+
+	leftStackedLayout->setCurrentIndex(4);
+	usersViewDetails->hide();
+	projectListViewDetails->hide();
+
+	clientViewSplitter->show();
+	clientView->show();
+	clientViewDetails->show();
 }
 
 void SH_MainWindow::usersTreeClickedItem(QModelIndex index)
