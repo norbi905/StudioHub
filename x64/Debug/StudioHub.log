@@ -1,8 +1,42 @@
-﻿Build started 3/14/2015 10:35:02 AM.
+﻿Build started 3/14/2015 12:48:58 PM.
      1>Project "C:\Users\Administrator\Documents\Visual Studio 2013\Projects\StudioHub\StudioHub.vcxproj" on node 2 (Build target(s)).
-     1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /I.\GeneratedFiles /I. /IC:\Qt\Qt5.4.1\5.4\msvc2013_64\include /I.\GeneratedFiles\Debug /IC:\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore /IC:\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtGui /IC:\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtSql /IC:\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets /Zi /nologo /W1 /WX- /Od /D UNICODE /D WIN32 /D WIN64 /D QT_DLL /D QT_CORE_LIB /D QT_GUI_LIB /D QT_SQL_LIB /D QT_WIDGETS_LIB /Gm- /EHsc /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"x64\Debug\\" /Fd"x64\Debug\vc120.pdb" /Gd /TP /errorReport:prompt src\SH_NewProjectWindow.cpp
-         SH_NewProjectWindow.cpp
+     1>CustomBuild:
+         Moc'ing SH_UsersViewToolBar.h...
+       ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /I.\GeneratedFiles /I. /IC:\Qt\Qt5.4.1\5.4\msvc2013_64\include /I.\GeneratedFiles\Debug /IC:\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtCore /IC:\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtGui /IC:\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtSql /IC:\Qt\Qt5.4.1\5.4\msvc2013_64\include\QtWidgets /Zi /nologo /W1 /WX- /Od /D UNICODE /D WIN32 /D WIN64 /D QT_DLL /D QT_CORE_LIB /D QT_GUI_LIB /D QT_SQL_LIB /D QT_WIDGETS_LIB /Gm- /EHsc /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"x64\Debug\\" /Fd"x64\Debug\vc120.pdb" /Gd /TP /errorReport:prompt GeneratedFiles\Debug\moc_SH_CalendarView.cpp GeneratedFiles\Debug\moc_SH_CalendarViewToolBar.cpp GeneratedFiles\Debug\moc_SH_LogInDialog.cpp GeneratedFiles\Debug\moc_SH_MainToolBar.cpp GeneratedFiles\Debug\moc_SH_MainView.cpp GeneratedFiles\Debug\moc_SH_MainViewToolBar.cpp GeneratedFiles\Debug\moc_SH_MySqlConnector.cpp GeneratedFiles\Debug\moc_SH_ProjectListViewDetails.cpp GeneratedFiles\Debug\moc_SH_ProjectViewToolBar.cpp GeneratedFiles\Debug\moc_SH_SecondaryToolBar.cpp GeneratedFiles\Debug\moc_SH_User.cpp GeneratedFiles\Debug\moc_SH_UsersViewDetails.cpp GeneratedFiles\Debug\moc_SH_UsersViewToolBar.cpp GeneratedFiles\Debug\moc_sh_mainwindow.cpp src\SH_CalendarView.cpp src\SH_CalendarViewToolBar.cpp src\SH_LogInDialog.cpp src\SH_MainToolBar.cpp src\SH_MainView.cpp src\SH_MainViewToolBar.cpp src\SH_MySqlConnector.cpp src\SH_ProjectListViewDetails.cpp src\SH_ProjectViewToolBar.cpp src\SH_SecondaryToolBar.cpp src\SH_User.cpp src\SH_UsersView.cpp src\SH_UsersViewDetails.cpp src\SH_UsersViewToolBar.cpp src\main.cpp src\sh_mainwindow.cpp
+         moc_SH_CalendarView.cpp
+         moc_SH_CalendarViewToolBar.cpp
+         moc_SH_LogInDialog.cpp
+         moc_SH_MainToolBar.cpp
+         moc_SH_MainView.cpp
+         moc_SH_MainViewToolBar.cpp
+         moc_SH_MySqlConnector.cpp
+         moc_SH_ProjectListViewDetails.cpp
+         moc_SH_ProjectViewToolBar.cpp
+         moc_SH_SecondaryToolBar.cpp
+         moc_SH_User.cpp
+         moc_SH_UsersViewDetails.cpp
+         moc_SH_UsersViewToolBar.cpp
+         moc_sh_mainwindow.cpp
+         SH_CalendarView.cpp
+         SH_CalendarViewToolBar.cpp
+         SH_LogInDialog.cpp
+         SH_MainToolBar.cpp
+         SH_MainView.cpp
+         SH_MainViewToolBar.cpp
+         Generating Code...
+         Compiling...
+         SH_MySqlConnector.cpp
+         SH_ProjectListViewDetails.cpp
+         SH_ProjectViewToolBar.cpp
+         SH_SecondaryToolBar.cpp
+         SH_User.cpp
+         SH_UsersView.cpp
+         SH_UsersViewDetails.cpp
+         SH_UsersViewToolBar.cpp
+         main.cpp
+         sh_mainwindow.cpp
+         Generating Code...
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Administrator\Documents\Visual Studio 2013\Projects\StudioHub\x64\Debug\\StudioHub.exe" /NOLOGO /LIBPATH:C:\Qt\Qt5.4.1\5.4\msvc2013_64\lib qtmaind.lib Qt5Cored.lib Qt5Guid.lib Qt5Sqld.lib Qt5Widgetsd.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Administrator\Documents\Visual Studio 2013\Projects\StudioHub\x64\Debug\StudioHub.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Administrator\Documents\Visual Studio 2013\Projects\StudioHub\x64\Debug\StudioHub.lib" /MACHINE:X64 x64\Debug\moc_SH_CalendarView.obj
          x64\Debug\moc_SH_CalendarViewToolBar.obj
@@ -46,4 +80,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:00.81
+Time Elapsed 00:00:22.67

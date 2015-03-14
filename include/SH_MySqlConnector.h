@@ -27,6 +27,7 @@ public:
 	
 	bool			connectToDatabase(QString username, QString password);
 	QSqlTableModel	*getUserNameTable();
+	QSqlTableModel	*getProjectTable();
 
 private:
 	SH_User			*user;
@@ -35,6 +36,7 @@ private:
 	QSqlDatabase	db;
 
 	QSqlTableModel	*userNameTable;
+	QSqlTableModel	*projectTable;
 	
 
 protected:

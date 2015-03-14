@@ -10,6 +10,8 @@ Constructor
 SH_ProjectListView::SH_ProjectListView(QWidget *parent)
 	: QTreeView(parent)
 {
+	this->setSortingEnabled(true);
+
 	contextAddProject = new QAction("Add project...", this);
 	contextDeleteProject = new QAction("Delete project", this);
 
@@ -36,6 +38,21 @@ void SH_ProjectListView::contextMenuEvent(QContextMenuEvent *event)
 	contextMenu.exec(event->globalPos());
 }
 
+void SH_ProjectListView::setProjectListTableModel(QSqlTableModel *model)
+{
+	this->setModel(model);
+	this->setColumnHidden(1, true);
+	this->setColumnHidden(2, true);
+	this->setColumnHidden(3, true);
+	this->setColumnHidden(4, true);
+	this->setColumnHidden(5, true);
+	this->setColumnHidden(6, true);
+
+	// FIX ME HACK sort to display newly added items
+	this->sortByColumn(0, Qt::DescendingOrder);
+	this->sortByColumn(0, Qt::AscendingOrder);
+}
+
 /*
 addProjectClicked
 */
@@ -45,7 +62,10 @@ void SH_ProjectListView::addProjectClicked()
 	int result = addProjectWindow->exec();
 	if (result == QDialog::Accepted)
 	{
-
+		QSqlQuery query;
+		query.exec("INSERT INTO projects (name) VALUES ('" + addProjectWindow->getProjectName() + "')");
+		this->sortByColumn(0, Qt::DescendingOrder);
+		this->sortByColumn(0, Qt::AscendingOrder);
 	}
 	else
 	{
@@ -58,5 +78,16 @@ deleteProjectClicked
 */
 void SH_ProjectListView::deleteProjectClicked()
 {
-	exit(0);
+	QMessageBox::StandardButton confirmation;
+	confirmation = QMessageBox::question(this, "Delete Project?", "Are you sure you want to delete " + this->currentIndex().data(Qt::DisplayRole).toString(), QMessageBox::Yes | QMessageBox::No);
+	if (confirmation == QMessageBox::Yes)
+	{
+		model()->removeRow(this->currentIndex().row());
+		this->sortByColumn(0, Qt::DescendingOrder);
+		this->sortByColumn(0, Qt::AscendingOrder);
+	}
+	else
+	{
+
+	}
 }

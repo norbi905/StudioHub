@@ -12,7 +12,7 @@ SH_UsersView::SH_UsersView(QWidget *parent)
 	: QTreeView(parent)
 {
 	this->setSortingEnabled(true);
-	this->setAlternatingRowColors(true);
+
 	contextAddUser		= new QAction("Add User...", this);
 	contextDeleteUser	= new QAction("Delete User", this);
 

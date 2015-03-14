@@ -77,11 +77,14 @@ SH_MainWindow::SH_MainWindow(QWidget *parent)
 	// connection so when user selects a user from treeview the usersviewdetails updates based on who is selected
 	connect(usersView, SIGNAL(clicked(QModelIndex)), usersViewDetails, SLOT(usersTreeViewClickedItem(QModelIndex)));
 
-	
 
 	// make connections for usersViewToolBar with userView class
 	connect(usersViewToolBar, SIGNAL(userViewAddUserClicked()), usersView, SLOT(addUserClicked()));
 	connect(usersViewToolBar, SIGNAL(userViewRemoveUserClicked()), usersView, SLOT(removeUserClicked()));
+
+	// make connection for projectViewToolBar with projectView class
+	connect(projectViewToolBar, SIGNAL(projectViewAddProjectClicked()), projectListView, SLOT(addProjectClicked()));
+	connect(projectViewToolBar, SIGNAL(projectViewDeleteProjectClicked()), projectListView, SLOT(deleteProjectClicked()));
 
 	//ui.setupUi(this);
 	//this->show();
@@ -229,6 +232,8 @@ void SH_MainWindow::initiateLogIn(QWidget *parent)
 
 			//set-up users list view
 			usersView->setUserNameTableModel(mySqlConnector->getUserNameTable());
+			//set-up project list view
+			projectListView->setProjectListTableModel(mySqlConnector->getProjectTable());
 
 			mainUser->setLoggedIn(true);
 

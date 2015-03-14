@@ -12,19 +12,21 @@ SH_ProjectViewToolBar::SH_ProjectViewToolBar(SH_MainToolBar *mainToolBar, QWidge
 {
 	connect(mainToolBar, SIGNAL(projectViewPressed()), this, SLOT(mainToolBarProjectViewPressed()));
 
+	addProjectIcon		= new QIcon("../StudioHubResources/ToolBarIcons/UserViewToolBar/AddUser.png");
+	deleteProjectIcon	= new QIcon("../StudioHubResources/ToolBarIcons/UserViewToolBar/RemoveUser.png");
+
 	this->setMovable(false);
 
-	buttonOne	= new QPushButton(this);
-	buttonTwo	= new QPushButton(this);
+	addProjectButton	= new QPushButton(*addProjectIcon, "Add Project", this);
+	deleteProjectButton	= new QPushButton(*deleteProjectIcon, "Delete Project", this);
 	buttonThree = new QPushButton(this);
 
-	buttonOne->setText("Project_ButtonOne");
-	buttonTwo->setText("Project_ButtonTwo");
-	buttonThree->setText("Project_ButtonThree");
-
-	this->addWidget(buttonOne);
-	this->addWidget(buttonTwo);
+	this->addWidget(addProjectButton);
+	this->addWidget(deleteProjectButton);
 	this->addWidget(buttonThree);
+
+	connect(addProjectButton, SIGNAL(clicked()), this, SLOT(addProjectClicked()));
+	connect(deleteProjectButton, SIGNAL(clicked()), this, SLOT(deleteProjectClicked()));
 }
 
 /*
@@ -33,8 +35,8 @@ Destructor
 SH_ProjectViewToolBar::~SH_ProjectViewToolBar()
 {
 	delete buttonThree;
-	delete buttonTwo;
-	delete buttonOne;
+	delete deleteProjectButton;
+	delete addProjectButton;
 }
 
 /*
@@ -43,4 +45,20 @@ mainToolBarProjectViewPressed
 void SH_ProjectViewToolBar::mainToolBarProjectViewPressed()
 {
 
+}
+
+/*
+addProjectClicked
+*/
+void SH_ProjectViewToolBar::addProjectClicked()
+{
+	emit projectViewAddProjectClicked();
+}
+
+/*
+deleteProjectClicked
+*/
+void SH_ProjectViewToolBar::deleteProjectClicked()
+{
+	emit projectViewDeleteProjectClicked();
 }

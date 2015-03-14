@@ -21,13 +21,22 @@ public:
 	~SH_ProjectViewToolBar();
 
 private:
-	QPushButton		*buttonOne;
-	QPushButton		*buttonTwo;
+	QPushButton		*addProjectButton;
+	QPushButton		*deleteProjectButton;
 	QPushButton		*buttonThree;
+
+	QIcon			*addProjectIcon;
+	QIcon			*deleteProjectIcon;
 
 
 protected:
+	signals :
+		void projectViewAddProjectClicked();
+		void projectViewDeleteProjectClicked();
+
 	private slots :
 		void	mainToolBarProjectViewPressed();
+		void addProjectClicked();
+		void deleteProjectClicked();
 };
 #endif // SH_ProjectViewToolBar

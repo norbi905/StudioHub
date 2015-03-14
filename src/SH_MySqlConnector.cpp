@@ -10,7 +10,8 @@ Constructor
 SH_MySqlConnector::SH_MySqlConnector()
 	: QObject()
 {
-	userNameTable = NULL;
+	userNameTable	= NULL;
+	projectTable	= NULL;
 }
 
 /*
@@ -64,4 +65,18 @@ QSqlTableModel *SH_MySqlConnector::getUserNameTable()
 	}
 
 	return userNameTable;
+}
+
+/*
+getProjectTable
+*/
+QSqlTableModel *SH_MySqlConnector::getProjectTable()
+{
+	if (projectTable == NULL);
+	{
+		projectTable = new QSqlTableModel(this, db);
+		projectTable->setTable("projects");
+		projectTable->select();
+	}
+	return projectTable;
 }

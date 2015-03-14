@@ -10,6 +10,8 @@ SH_NewProjectWindow_H
 #include <qgroupbox.h>
 #include <qlabel.h>
 #include <qlineedit.h>
+#include <qpushbutton.h>
+#include <qcombobox.h>
 
 class SH_NewProjectWindow : public QDialog
 {
@@ -18,6 +20,8 @@ class SH_NewProjectWindow : public QDialog
 public:
 	SH_NewProjectWindow(QWidget *parent = 0, Qt::WindowFlags f = 0);
 	~SH_NewProjectWindow();
+
+	QString		getProjectName();
 
 private:
 	QVBoxLayout	*mainLayout;
@@ -30,6 +34,15 @@ private:
 	QGroupBox	*projectInfoBox;
 	QLabel		*projectNameLabel;
 	QLineEdit	*projectNameLineEdit;
+	QLabel		*clientLabel;
+	QComboBox	*clientComboBox;
+
+	// add/cacnel buttons
+	QPushButton	*addProjectButton;
+	QPushButton	*cancelProjectButton;
+
+	// create signals for buttons
+	void		createSignals();
 	
 protected:
 };
