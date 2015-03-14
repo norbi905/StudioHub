@@ -46,6 +46,14 @@ bool SH_MySqlConnector::connectToDatabase(QString username, QString password)
 }
 
 /*
+getDatabase
+*/
+QSqlDatabase SH_MySqlConnector::getDatabase()
+{
+	return db;
+}
+
+/*
 getDBError
 */
 QString SH_MySqlConnector::getDBError()

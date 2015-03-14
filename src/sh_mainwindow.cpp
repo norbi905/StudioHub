@@ -57,7 +57,6 @@ SH_MainWindow::SH_MainWindow(QWidget *parent)
 	mainView		= new SH_MainView(this);
 	mainView->hide();
 	
-	
 	usersViewDetails = new SH_UsersViewDetails();
 	usersViewDetails->hide();
 	usersView = new SH_UsersView(usersViewDetails);
@@ -253,6 +252,7 @@ void SH_MainWindow::initiateLogIn(QWidget *parent)
 			usersView->setUserNameTableModel(mySqlConnector->getUserNameTable());
 			//set-up project list view
 			projectListView->setProjectListTableModel(mySqlConnector->getProjectTable());
+			projectListView->addProjectWindow->setTableModel(mySqlConnector->getClientTable());
 			//set-up client list view
 			clientView->setClientViewTableModel(mySqlConnector->getClientTable());
 

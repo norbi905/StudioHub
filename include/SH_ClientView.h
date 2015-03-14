@@ -7,6 +7,12 @@ SH_ClientView_H
 
 #include <QtSql>
 #include <qtreeview.h>
+#include <qaction.h>
+#include <qmenu.h>
+#include <qevent.h>
+#include <qmessagebox.h>
+
+#include "SH_NewClientWindow.h"
 
 class SH_ClientView : public QTreeView
 {
@@ -19,7 +25,16 @@ public:
 	void setClientViewTableModel(QSqlTableModel *model);
 
 private:
+	QAction	*contextAddClient;
+	QAction *contextDeleteClient;
+
+	SH_NewClientWindow	*clientWindow;
+
 protected:
+	private slots :
+		void addClientClicked();
+		void deleteClientClicked();
+		void contextMenuEvent(QContextMenuEvent *event) Q_DECL_OVERRIDE;
 };
 
 #endif // SH_ClientView_H

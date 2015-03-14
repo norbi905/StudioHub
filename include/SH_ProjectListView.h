@@ -29,9 +29,10 @@ public:
 	QAction	*contextAddProject;
 	QAction *contextDeleteProject;
 
-private:
 	SH_NewProjectWindow		*addProjectWindow;
 
+private:
+	
 protected:
 	
 	private slots:

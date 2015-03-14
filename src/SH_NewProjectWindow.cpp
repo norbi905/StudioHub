@@ -7,7 +7,7 @@ SH_NewProjectWindow.cpp
 /*
 Constructor
 */
-SH_NewProjectWindow::SH_NewProjectWindow(QWidget *parent, Qt::WindowFlags f)
+SH_NewProjectWindow::SH_NewProjectWindow(QWidget *parent)
 	: QDialog(parent)
 {
 	setWindowFlags(Qt::Tool);
@@ -30,6 +30,7 @@ SH_NewProjectWindow::SH_NewProjectWindow(QWidget *parent, Qt::WindowFlags f)
 	projectNameLineEdit = new QLineEdit();
 	clientLabel			= new QLabel("Client: ");
 	clientComboBox		= new QComboBox();
+
 	projectInfoBox->setMaximumHeight(150);
 
 	projectInfoLayout->addWidget(projectNameLabel,0,0);
@@ -74,4 +75,24 @@ getProjectName
 QString SH_NewProjectWindow::getProjectName()
 {
 	return projectNameLineEdit->text();
+}
+
+/*
+getProjectClient
+*/
+QString SH_NewProjectWindow::getProjectClient()
+{
+	return clientComboBox->currentText();
+}
+
+void SH_NewProjectWindow::setTableModel(QSqlTableModel *model)
+{
+	clientModel = model;
+}
+
+void SH_NewProjectWindow::updateClientComboBox()
+{
+	clientModel->select();
+	clientModel->sort(0, Qt::AscendingOrder);
+	clientComboBox->setModel(clientModel);
 }
