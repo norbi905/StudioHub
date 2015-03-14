@@ -23,6 +23,11 @@ public:
 	SH_NewUserWindow(QWidget *parent = 0, Qt::WindowFlags f = 0);
 	~SH_NewUserWindow();
 
+	QString		getUserName();
+	QString		getUserPassword();
+	QString		getUserAccess();
+	QString		getUserTitle();
+
 private:
 	QVBoxLayout	*mainLayout;
 	QScrollArea	*mainScrollArea;
@@ -44,8 +49,11 @@ private:
 
 	QPushButton		*addUserButton;
 	QPushButton		*cancelAddUserButton;
-	
 
+	// create Actions/Signals
+	void	createActions();
+	void	createSignals();
+	
 protected:
 };
 
