@@ -31,7 +31,7 @@ public:
 
 private:
 	SH_NewUserWindow	*addNewUserWindow;
-
+	
 protected:
 	private slots :
 	void addUserClicked();
