@@ -13,7 +13,7 @@ SH_MainWindow::SH_MainWindow(QWidget *parent)
 	/* Setup main window
 	::FramelessWindowHint - We dont want any window frames
 	*/
-	setWindowFlags(Qt::FramelessWindowHint);
+	//setWindowFlags(Qt::FramelessWindowHint);
 
 	setMinimumSize(1280, 1024);
 	
@@ -33,6 +33,7 @@ SH_MainWindow::SH_MainWindow(QWidget *parent)
 	mainLayout			= new QGridLayout(this);
 	leftStackedLayout	= new QStackedLayout(this);
 
+	/*
 	// create connectors
 	connect(mainToolBar, SIGNAL(logOffRequested()), this, SLOT(userRequestedLogOff()));
 	connect(mainToolBar, SIGNAL(quitRequested()), this, SLOT(quitApplication()));
@@ -130,7 +131,7 @@ SH_MainWindow::SH_MainWindow(QWidget *parent)
 	
 	setLayout(mainLayout);
 
-	initiateLogIn(parent);
+	initiateLogIn(parent);*/
 }
 
 /*
@@ -254,6 +255,8 @@ void SH_MainWindow::initiateLogIn(QWidget *parent)
 
 			//set-up users list view
 			usersView->setUserNameTableModel(mySqlConnector->getUserNameTable());
+			usersViewDetails->setTableModel(mySqlConnector->getUserNameTable());
+			usersViewDetails->setView();
 			//set-up project list view
 			projectListView->setProjectListTableModel(mySqlConnector->getProjectTable());
 			projectListView->addProjectWindow->setTableModel(mySqlConnector->getClientTable());
@@ -348,11 +351,13 @@ void SH_MainWindow::mainToolBarUsersViewPressed()
 	usersViewToolBar->show();
 	calendarViewToolBar->hide();
 	clientViewToolBar->hide();
-
+	
+	usersViewDetails->updateView(mySqlConnector->getUserNameTable());
 	leftStackedLayout->setCurrentIndex(2);
 	usersViewSplitter->show();
 	usersView->show();
 	usersViewDetails->show();
+	
 }
 
 /*

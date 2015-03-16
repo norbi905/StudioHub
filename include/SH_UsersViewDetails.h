@@ -1,8 +1,13 @@
 #ifndef SH_USERSVIEWDETAILS_H
 #define SH_USERSVIEWDETAILS_H
 
-#include "sh_mainwindow.h"
+#include <QSql>
 #include "qdebug.h"
+#include "qscrollarea.h"
+
+#include "sh_mainwindow.h"
+#include "SH_UsersGridLayout.h"
+#include "SH_UsersGridWidget.h"
 
 class SH_UsersViewDetails : public SH_UsersView
 {
@@ -12,8 +17,20 @@ public:
 	SH_UsersViewDetails(QWidget *parent = 0);
 	~SH_UsersViewDetails();
 
+	void setTableModel(QSqlTableModel *model);
+	void setView();
+	void updateView(QSqlTableModel *model);
+
 private:
-	QVBoxLayout	*usersViewDetailsLayout;
+	QSqlTableModel		*thisModel;
+
+	QScrollArea			*mainScrollArea;
+	SH_UsersGridLayout	*usersGridLayout;
+	QWidget				*placeholderWidget;
+	QGridLayout			*newLayout;
+	QVBoxLayout			*mainLayout;
+
+	/*QVBoxLayout	*usersViewDetailsLayout;
 	QGridLayout	*userProfileLayout;
 	
 	QGroupBox	*userProfileBox;
@@ -26,7 +43,7 @@ private:
 	QLabel		*userOnline;
 	QLabel		*userStatus;
 	QLabel		*userPhone;
-	QLabel		*userEmail;
+	QLabel		*userEmail;*/
 
 protected:
 	private slots:

@@ -69,6 +69,12 @@
     <Filter Include="Header Files\Views">
       <UniqueIdentifier>{51db1425-9305-4ba9-bad7-4c1e392cf47c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Widgets">
+      <UniqueIdentifier>{e33cb7fa-ff89-4640-baf8-eb72058af8b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Widgets">
+      <UniqueIdentifier>{68872615-b8a2-4e68-ad57-e26e23b5ef7d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GeneratedFiles\Debug\moc_SH_LogInDialog.cpp">
@@ -266,6 +272,12 @@
     <ClCompile Include="src\SH_NewClientWindow.cpp">
       <Filter>Source Files\Views</Filter>
     </ClCompile>
+    <ClCompile Include="src\SH_UsersGridLayout.cpp">
+      <Filter>Source Files\Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SH_UsersGridWidget.cpp">
+      <Filter>Source Files\Widgets</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="sh_mainwindow.ui">
@@ -346,6 +358,12 @@
   <ItemGroup>
     <ClInclude Include="include\SH_NewClientWindow.h">
       <Filter>Header Files\Views</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SH_UsersGridLayout.h">
+      <Filter>Header Files\Widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SH_UsersGridWidget.h">
+      <Filter>Header Files\Widgets</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

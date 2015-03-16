@@ -3,7 +3,18 @@
 SH_UsersViewDetails::SH_UsersViewDetails(QWidget *parent)
 	: SH_UsersView(parent)
 {
-	userName		= new QLabel();
+	thisModel = NULL;
+
+	mainScrollArea = new QScrollArea(this);
+	placeholderWidget = new QWidget(mainScrollArea);
+	newLayout = new QGridLayout(mainScrollArea);
+	mainLayout = new QVBoxLayout(this);
+	mainScrollArea->setWidgetResizable(true);
+
+	
+	
+
+	/*userName		= new QLabel();
 	userAccess		= new QLabel();
 	userPosition	= new QLabel();
 	userSpecialties = new QLabel();
@@ -35,23 +46,74 @@ SH_UsersViewDetails::SH_UsersViewDetails(QWidget *parent)
 	userProfileLayout->addWidget(userStatus, 6, 1);
 	userProfileLayout->addWidget(userOnline, 7, 1);
 		
-	userProfileBox->setLayout(userProfileLayout);
+	userProfileBox->setLayout(userProfileLayout);*/
 }
 
 SH_UsersViewDetails::~SH_UsersViewDetails()
 {
-	delete userProfileBox;
+	//delete userProfileBox;
 }
 
+/*
+usersTreeViewClickedItem
+*/
 void SH_UsersViewDetails::usersTreeViewClickedItem(QModelIndex index)
 {
-	//userName->setText(index.data(Qt::DisplayRole).toString() + "\n" + index.model()->data(index.model()->index(index.row(), 1)).toString());
-	userName->setText(index.data(Qt::DisplayRole).toString());
+	/*userName->setText(index.data(Qt::DisplayRole).toString());
 	userAccess->setText(index.model()->data(index.model()->index(index.row(), 1)).toString());
 	userPosition->setText(index.model()->data(index.model()->index(index.row(), 2)).toString());
 	userSpecialties->setText(index.model()->data(index.model()->index(index.row(), 3)).toString());
 	userOnline->setText(index.model()->data(index.model()->index(index.row(), 4)).toString());
 	userStatus->setText(index.model()->data(index.model()->index(index.row(), 5)).toString());
 	userPhone->setText(index.model()->data(index.model()->index(index.row(), 6)).toString());
-	userEmail->setText(index.model()->data(index.model()->index(index.row(), 7)).toString());
+	userEmail->setText(index.model()->data(index.model()->index(index.row(), 7)).toString());*/
+}
+
+/*
+setTableModel
+*/
+void SH_UsersViewDetails::setTableModel(QSqlTableModel *model)
+{
+	thisModel = model;
+}
+
+/*
+setView
+*/
+void SH_UsersViewDetails::setView()
+{
+	usersGridLayout = new SH_UsersGridLayout(this);
+	usersGridLayout->setMaxColumnCount(4);
+
+	for (int i = 0; i < thisModel->rowCount(); i++)
+	{
+		usersGridLayout->addWidget(new SH_UsersGridWidget(this, thisModel->data(thisModel->index(i,0)).toString(),
+																thisModel->data(thisModel->index(i,1)).toString(),
+																thisModel->data(thisModel->index(i, 2)).toString(),
+																thisModel->data(thisModel->index(i, 3)).toString(),
+																thisModel->data(thisModel->index(i, 4)).toString(),
+																thisModel->data(thisModel->index(i, 5)).toString(),
+																thisModel->data(thisModel->index(i, 6)).toString(),
+																thisModel->data(thisModel->index(i, 7)).toString()));
+	}
+	
+
+	placeholderWidget->setLayout(usersGridLayout);
+	mainScrollArea->setWidget(placeholderWidget);
+
+	mainLayout->addWidget(mainScrollArea);
+
+	setLayout(mainLayout);
+}
+
+/*
+updateView
+*/
+void SH_UsersViewDetails::updateView(QSqlTableModel *model)
+{
+	
+
+	thisModel = model;
+	thisModel->select();
+	setView();
 }

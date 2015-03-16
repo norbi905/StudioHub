@@ -326,6 +326,8 @@
     <ClCompile Include="src\SH_ProjectViewToolBar.cpp" />
     <ClCompile Include="src\SH_SecondaryToolBar.cpp" />
     <ClCompile Include="src\SH_User.cpp" />
+    <ClCompile Include="src\SH_UsersGridLayout.cpp" />
+    <ClCompile Include="src\SH_UsersGridWidget.cpp" />
     <ClCompile Include="src\SH_UsersView.cpp" />
     <ClCompile Include="src\SH_UsersViewDetails.cpp" />
     <ClCompile Include="src\SH_UsersViewToolBar.cpp" />
@@ -783,6 +785,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\SH_NewClientWindow.h" />
+    <ClInclude Include="include\SH_UsersGridLayout.h" />
+    <ClInclude Include="include\SH_UsersGridWidget.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
